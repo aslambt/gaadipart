@@ -179,11 +179,11 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Container(
-            width: _screen_width * (3 / 4),
-            child: Image.asset(
-                "assets/splash_login_registration_background_image.png"),
-          ),
+         // Container(
+           // width: _screen_width * (3 / 4),
+          //  child: Image.asset(
+             //   "assets/splash_login_registration_background_image.png"),
+          //),
           Container(
             width: double.infinity,
             child: SingleChildScrollView(
@@ -194,20 +194,21 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.only(top: 40.0, bottom: 0),
                   child: Container(
                     width: 150,
-                    height: 130,
+                    height: 150,
                     child: Image.asset('assets/logo.png'),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: Text(
-                    "Login to " + AppConfig.app_name,
+                    "Login  ",
                     style: TextStyle(
-                        color: MyTheme.accent_color,
-                        fontSize: 18,
+                        color: Colors.black,
+                        fontSize: 25,
                         fontWeight: FontWeight.w600),
                   ),
                 ),
+                SizedBox(height: 40),
                 Container(
                   width: _screen_width * (3 / 4),
                   child: Column(
@@ -218,7 +219,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           _login_by == "email" ? "Email" : "Phone",
                           style: TextStyle(
-                              color: MyTheme.accent_color,
+                              color: Colors.black,                              fontSize: 18,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -248,8 +249,7 @@ class _LoginState extends State<Login> {
                                       child: Text(
                                         "or, Login with a phone number",
                                         style: TextStyle(
-                                            color: MyTheme.accent_color,
-                                            fontStyle: FontStyle.italic,
+                                            color: Colors.black,                                            fontStyle: FontStyle.italic,
                                             decoration:
                                                 TextDecoration.underline),
                                       ),
@@ -307,8 +307,7 @@ class _LoginState extends State<Login> {
                                 child: Text(
                                   "or, Login with an email",
                                   style: TextStyle(
-                                      color: MyTheme.accent_color,
-                                      fontStyle: FontStyle.italic,
+                                      color: Colors.black,                                      fontStyle: FontStyle.italic,
                                       decoration: TextDecoration.underline),
                                 ),
                               )
@@ -320,7 +319,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           "Password",
                           style: TextStyle(
-                              color: MyTheme.accent_color,
+                              color: Colors.black,                              fontSize: 18,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -352,8 +351,7 @@ class _LoginState extends State<Login> {
                               child: Text(
                                 "Forgot Password?",
                                 style: TextStyle(
-                                    color: MyTheme.accent_color,
-                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black,                                    fontStyle: FontStyle.italic,
                                     decoration: TextDecoration.underline),
                               ),
                             )
@@ -372,15 +370,15 @@ class _LoginState extends State<Login> {
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
-                            color: MyTheme.golden,
+                            color: Colors.purple,
                             shape: RoundedRectangleBorder(
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(12.0))),
+                                    Radius.circular(20.0))),
                             child: Text(
                               "Log in",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.w600),
                             ),
                             onPressed: () {
@@ -395,7 +393,7 @@ class _LoginState extends State<Login> {
                             child: Text(
                           "or, create a new account ?",
                           style: TextStyle(
-                              color: Colors.black, fontSize: 12),
+                              color: Colors.black, fontSize: 16),
                         )),
                       ),
                       Padding(
@@ -410,15 +408,15 @@ class _LoginState extends State<Login> {
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
-                            color: MyTheme.accent_color,
+                            color: Colors.purple,
                             shape: RoundedRectangleBorder(
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(12.0))),
+                                    Radius.circular(20.0))),
                             child: Text(
                               "Sign up",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.w600),
                             ),
                             onPressed: () {
