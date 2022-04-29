@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "514098529356",
+    "project_id": "gaadipart-f6da3",
+    "storage_bucket": "gaadipart-f6da3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514098529356:android:fdb3dcdff6e595d51460e9",
+        "android_client_info": {
+          "package_name": "com.activeitzone.active_ecommerce_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514098529356-raa89otg282psvlkd6539gsp98bug3jn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9wtdwt76n2GWlJ2Zg_NVqGSod4VwbB4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514098529356-raa89otg282psvlkd6539gsp98bug3jn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
