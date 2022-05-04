@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class MyTheme{
   /*configurable colors stars*/
-  static Color accent_color = Color.fromRGBO(230,46,4, 1);
+  static Color accent_color = Colors.purple;
+  static Color theme_color = Colors.purple;
+  static Color font_color = Colors.black;
   static Color soft_accent_color = Color.fromRGBO(247,189,168, 1);
   static Color splash_screen_color = Colors.white; // if not sure , use the same color as accent color
   /*configurable colors ends*/

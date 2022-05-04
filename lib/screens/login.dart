@@ -79,9 +79,8 @@ class _LoginState extends State<Login> {
       ToastComponent.showDialog(loginResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
       AuthHelper().setUserData(loginResponse);
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return Main();
-      }));
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) => Main()), (route) => false);
     }
   }
 
@@ -203,7 +202,7 @@ class _LoginState extends State<Login> {
                   child: Text(
                     "Login  ",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: MyTheme.font_color,
                         fontSize: 25,
                         fontWeight: FontWeight.w600),
                   ),
@@ -219,7 +218,8 @@ class _LoginState extends State<Login> {
                         child: Text(
                           _login_by == "email" ? "Email" : "Phone",
                           style: TextStyle(
-                              color: Colors.black,                              fontSize: 18,
+                              color: MyTheme.font_color,
+                              fontSize: 18,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -249,7 +249,8 @@ class _LoginState extends State<Login> {
                                       child: Text(
                                         "or, Login with a phone number",
                                         style: TextStyle(
-                                            color: Colors.black,                                            fontStyle: FontStyle.italic,
+                                            color: MyTheme.font_color,
+                                            fontStyle: FontStyle.italic,
                                             decoration:
                                                 TextDecoration.underline),
                                       ),
@@ -307,7 +308,8 @@ class _LoginState extends State<Login> {
                                 child: Text(
                                   "or, Login with an email",
                                   style: TextStyle(
-                                      color: Colors.black,                                      fontStyle: FontStyle.italic,
+                                      color: MyTheme.font_color,
+                                      fontStyle: FontStyle.italic,
                                       decoration: TextDecoration.underline),
                                 ),
                               )
@@ -319,7 +321,8 @@ class _LoginState extends State<Login> {
                         child: Text(
                           "Password",
                           style: TextStyle(
-                              color: Colors.black,                              fontSize: 18,
+                              color: MyTheme.font_color,
+                              fontSize: 18,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -351,7 +354,8 @@ class _LoginState extends State<Login> {
                               child: Text(
                                 "Forgot Password?",
                                 style: TextStyle(
-                                    color: Colors.black,                                    fontStyle: FontStyle.italic,
+                                    color: MyTheme.font_color,
+                                    fontStyle: FontStyle.italic,
                                     decoration: TextDecoration.underline),
                               ),
                             )
@@ -370,7 +374,7 @@ class _LoginState extends State<Login> {
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
-                            color: Colors.purple,
+                            color: MyTheme.theme_color,
                             shape: RoundedRectangleBorder(
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0))),
@@ -408,7 +412,7 @@ class _LoginState extends State<Login> {
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
-                            color: Colors.purple,
+                            color: MyTheme.theme_color,
                             shape: RoundedRectangleBorder(
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0))),

@@ -291,6 +291,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   onPressBuyNow(context) {
     addToCart(mode: "buy_now", context: context);
+
   }
 
   addToCart({mode, context = null, snackbar = null}) async {
@@ -320,7 +321,9 @@ class _ProductDetailsState extends State<ProductDetails> {
         }
         reset();
         fetchAll();
-      } else if (mode == 'buy_now') {
+      }
+
+      else if (mode == 'buy_now') {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return Cart(has_bottomnav: false);
         })).then((value) {
@@ -328,7 +331,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         });
       }
     }
-  }
+   }
 
   onPopped(value) async {
     reset();

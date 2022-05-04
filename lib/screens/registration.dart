@@ -115,11 +115,11 @@ class _RegistrationState extends State<Registration> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Container(
-            width: _screen_width * (3 / 4),
-            child: Image.asset(
-                "assets/splash_login_registration_background_image.png"),
-          ),
+          // Container(
+          //   width: _screen_width * (3 / 4),
+          //   child: Image.asset(
+          //       "assets/splash_login_registration_background_image.png"),
+          // ),
           Container(
             width: double.infinity,
             child: SingleChildScrollView(
@@ -128,22 +128,23 @@ class _RegistrationState extends State<Registration> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 0),
-                  child: Container(
-                    width: 150,
-                    height: 130,
-                    child: Image.asset('assets/logo.png'),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
+                //   child: Container(
+                //     width: 150,
+                //     height: 130,
+                //     child: Image.asset('assets/logo.png'),
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.only(bottom: 20.0),
                   child: Text(
                     "Join " + AppConfig.app_name,
                     style: TextStyle(
                         color: MyTheme.accent_color,
-                        fontSize: 18,
+                        fontSize: 35,
                         fontWeight: FontWeight.w600),
                   ),
                 ),
+                SizedBox(height: 75,),
                 Container(
                   width: _screen_width * (3 / 4),
                   child: Column(
@@ -154,14 +155,14 @@ class _RegistrationState extends State<Registration> {
                         child: Text(
                           "Name",
                           style: TextStyle(
-                              color: MyTheme.accent_color,
-                              fontWeight: FontWeight.w600),
+                              color: MyTheme.font_color,
+                              fontSize: 19,fontWeight: FontWeight.bold),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Container(
-                          height: 36,
+                          height: 40,
                           child: TextField(
                             controller: _nameController,
                             autofocus: false,
@@ -175,8 +176,8 @@ class _RegistrationState extends State<Registration> {
                         child: Text(
                           _register_by == "email" ? "Email" : "Phone",
                           style: TextStyle(
-                              color: MyTheme.accent_color,
-                              fontWeight: FontWeight.w600),
+                              color: MyTheme.font_color,
+                              fontSize: 19,fontWeight: FontWeight.bold),
                         ),
                       ),
                       if (_register_by == "email")
@@ -186,7 +187,7 @@ class _RegistrationState extends State<Registration> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
-                                height: 36,
+                                height: 40,
                                 child: TextField(
                                   controller: _emailController,
                                   autofocus: false,
@@ -205,7 +206,7 @@ class _RegistrationState extends State<Registration> {
                                       child: Text(
                                         "or, Register with a phone number",
                                         style: TextStyle(
-                                            color: MyTheme.accent_color,
+                                            color: MyTheme.font_color,
                                             fontStyle: FontStyle.italic,
                                             decoration:
                                                 TextDecoration.underline),
@@ -222,7 +223,7 @@ class _RegistrationState extends State<Registration> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
-                                height: 36,
+                                height: 40,
                                 child: CustomInternationalPhoneNumberInput(
                                   onInputChanged: (PhoneNumber number) {
                                     print(number.phoneNumber);
@@ -275,8 +276,8 @@ class _RegistrationState extends State<Registration> {
                         child: Text(
                           "Password",
                           style: TextStyle(
-                              color: MyTheme.accent_color,
-                              fontWeight: FontWeight.w600),
+                              color: MyTheme.font_color,
+                              fontWeight: FontWeight.bold,fontSize: 19),
                         ),
                       ),
                       Padding(
@@ -285,7 +286,7 @@ class _RegistrationState extends State<Registration> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(
-                              height: 36,
+                              height: 40,
                               child: TextField(
                                 controller: _passwordController,
                                 autofocus: false,
@@ -300,7 +301,7 @@ class _RegistrationState extends State<Registration> {
                             Text(
                               "Password must be at least 6 character",
                               style: TextStyle(
-                                  color: MyTheme.textfield_grey,
+                                  color: MyTheme.font_color,
                                   fontStyle: FontStyle.italic),
                             )
                           ],
@@ -309,16 +310,16 @@ class _RegistrationState extends State<Registration> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 4.0),
                         child: Text(
-                          "Retype Password",
+                          "Confirm Password",
                           style: TextStyle(
-                              color: MyTheme.accent_color,
-                              fontWeight: FontWeight.w600),
+                              color: MyTheme.font_color,
+                              fontWeight: FontWeight.bold,fontSize: 19),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Container(
-                          height: 36,
+                          height: 40,
                           child: TextField(
                             controller: _passwordConfirmController,
                             autofocus: false,
@@ -326,7 +327,7 @@ class _RegistrationState extends State<Registration> {
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecorations.buildInputDecoration_1(
-                                hint_text: "• • • • • • • •"),
+                                hint_text: "* * * * * * *"),
                           ),
                         ),
                       ),
@@ -350,7 +351,7 @@ class _RegistrationState extends State<Registration> {
                               "Sign Up",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w600),
                             ),
                             onPressed: () {
@@ -365,7 +366,7 @@ class _RegistrationState extends State<Registration> {
                             child: Text(
                           "Already have an Account ?",
                           style: TextStyle(
-                              color: MyTheme.medium_grey, fontSize: 12),
+                              color: MyTheme.font_color, fontSize: 12),
                         )),
                       ),
                       Padding(
@@ -388,7 +389,7 @@ class _RegistrationState extends State<Registration> {
                               "Log in",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w600),
                             ),
                             onPressed: () {

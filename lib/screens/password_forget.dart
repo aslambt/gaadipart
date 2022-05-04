@@ -80,11 +80,11 @@ class _PasswordForgetState extends State<PasswordForget> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Container(
-            width: _screen_width * (3 / 4),
-            child: Image.asset(
-                "assets/splash_login_registration_background_image.png"),
-          ),
+          // Container(
+          //   width: _screen_width * (3 / 4),
+          //   child: Image.asset(
+          //       "assets/splash_login_registration_background_image.png"),
+          // ),
           Container(
             width: double.infinity,
             child: SingleChildScrollView(
@@ -97,19 +97,20 @@ class _PasswordForgetState extends State<PasswordForget> {
                     width: 75,
                     height: 75,
                     child:
-                        Image.asset('assets/login_registration_form_logo.png'),
+                        Image.asset('assets/logo.png'),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: Text(
-                    "Forget Password ?",
+                    "Forgot Password ?",
                     style: TextStyle(
-                        color: MyTheme.accent_color,
-                        fontSize: 18,
+                        color: MyTheme.font_color,
+                        fontSize: 25,
                         fontWeight: FontWeight.w600),
                   ),
                 ),
+                SizedBox(height: 50),
                 Container(
                   width: _screen_width * (3 / 4),
                   child: Column(
@@ -120,8 +121,8 @@ class _PasswordForgetState extends State<PasswordForget> {
                         child: Text(
                           _send_code_by == "email" ? "Email" : "Phone",
                           style: TextStyle(
-                              color: MyTheme.accent_color,
-                              fontWeight: FontWeight.w600),
+                              color: MyTheme.font_color,
+                              fontWeight: FontWeight.bold,fontSize: 19),
                         ),
                       ),
                       if (_send_code_by == "email")
@@ -131,7 +132,7 @@ class _PasswordForgetState extends State<PasswordForget> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
-                                height: 36,
+                                height: 46,
                                 child: TextField(
                                   controller: _emailController,
                                   autofocus: false,
@@ -150,7 +151,7 @@ class _PasswordForgetState extends State<PasswordForget> {
                                       child: Text(
                                         "or, send code via phone number",
                                         style: TextStyle(
-                                            color: MyTheme.accent_color,
+                                            color: MyTheme.font_color,
                                             fontStyle: FontStyle.italic,
                                             decoration:
                                                 TextDecoration.underline),
@@ -207,7 +208,7 @@ class _PasswordForgetState extends State<PasswordForget> {
                                 child: Text(
                                   "or, send code via email",
                                   style: TextStyle(
-                                      color: MyTheme.accent_color,
+                                      color: MyTheme.font_color,
                                       fontStyle: FontStyle.italic,
                                       decoration: TextDecoration.underline),
                                 ),
@@ -215,6 +216,7 @@ class _PasswordForgetState extends State<PasswordForget> {
                             ],
                           ),
                         ),
+                      SizedBox(height: 30),
                       Padding(
                         padding: const EdgeInsets.only(top: 40.0),
                         child: Container(
@@ -235,7 +237,7 @@ class _PasswordForgetState extends State<PasswordForget> {
                               "Send Code",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w600),
                             ),
                             onPressed: () {

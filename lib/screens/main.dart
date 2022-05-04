@@ -67,7 +67,7 @@ class _MainState extends State<Main> {
                       );
                     }));
                   })),
-          elevation: 0.0,
+          elevation: 10.0,
         ),
       ),
       bottomNavigationBar: BottomAppBar(

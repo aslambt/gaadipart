@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:gaadipart/my_theme.dart';
 import 'package:gaadipart/screens/home.dart';
 import 'package:gaadipart/screens/main.dart';
 import 'package:gaadipart/screens/profile.dart';
@@ -58,44 +59,43 @@ class _MainDrawerState extends State<MainDrawer> {
               is_logged_in.value == true
                   ? ListTile(
                       leading: CircleAvatar(
+                        radius: 30.0,
                         backgroundImage: NetworkImage(
                           AppConfig.BASE_PATH + "${avatar_original.value}",
                         ),
                       ),
-                      title: Text("${user_name.value}"),
+                      title: Text("${user_name.value}",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                       subtitle:
                           user_email.value != "" && user_email.value != null
-                              ? Text("${user_email.value}")
+                              ? Text("${user_email.value}",style: TextStyle(fontWeight: FontWeight.bold),)
                               : Text("${user_phone.value}"))
                   : Text('Not logged in',
                       style: TextStyle(
-                          color: Color.fromRGBO(153, 153, 153, 1),
-                          fontSize: 14)),
+                          color: MyTheme.font_color,
+                          fontSize: 18)),
               Divider(),
               ListTile(
                   visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                   leading: Image.asset("assets/home.png",
-                      height: 16, color: Color.fromRGBO(153, 153, 153, 1)),
+                      height: 16,  color: MyTheme.theme_color,),
                   title: Text('Home',
                       style: TextStyle(
-                          color: Color.fromRGBO(153, 153, 153, 1),
-                          fontSize: 14)),
+                          color: MyTheme.font_color,
+                          fontSize: 18)),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return Main();
-                    }));
+                    Navigator.pushAndRemoveUntil(context,
+                        MaterialPageRoute(builder: (context) => Main()), (route) => false);
                   }),
               is_logged_in.value == true
                   ? ListTile(
                       visualDensity:
                           VisualDensity(horizontal: -4, vertical: -4),
                       leading: Image.asset("assets/profile.png",
-                          height: 16, color: Color.fromRGBO(153, 153, 153, 1)),
+                          height: 16,   color: MyTheme.theme_color,),
                       title: Text('Profile',
                           style: TextStyle(
-                              color: Color.fromRGBO(153, 153, 153, 1),
-                              fontSize: 14)),
+                              color: MyTheme.font_color,
+                              fontSize: 18)),
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -108,11 +108,10 @@ class _MainDrawerState extends State<MainDrawer> {
                       visualDensity:
                           VisualDensity(horizontal: -4, vertical: -4),
                       leading: Image.asset("assets/order.png",
-                          height: 16, color: Color.fromRGBO(153, 153, 153, 1)),
+                          height: 16,  color: MyTheme.theme_color,),
                       title: Text('Orders',
                           style: TextStyle(
-                              color: Color.fromRGBO(153, 153, 153, 1),
-                              fontSize: 14)),
+                              color: MyTheme.font_color,                              fontSize: 18)),
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -125,11 +124,10 @@ class _MainDrawerState extends State<MainDrawer> {
                       visualDensity:
                           VisualDensity(horizontal: -4, vertical: -4),
                       leading: Image.asset("assets/heart.png",
-                          height: 16, color: Color.fromRGBO(153, 153, 153, 1)),
+                          height: 16,  color: MyTheme.theme_color,),
                       title: Text('My Wishlist',
                           style: TextStyle(
-                              color: Color.fromRGBO(153, 153, 153, 1),
-                              fontSize: 14)),
+                              color: MyTheme.font_color,                              fontSize: 18)),
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -142,11 +140,10 @@ class _MainDrawerState extends State<MainDrawer> {
                       visualDensity:
                           VisualDensity(horizontal: -4, vertical: -4),
                       leading: Image.asset("assets/chat.png",
-                          height: 16, color: Color.fromRGBO(153, 153, 153, 1)),
+                          height: 16,    color: MyTheme.theme_color,),
                       title: Text('Messages',
                           style: TextStyle(
-                              color: Color.fromRGBO(153, 153, 153, 1),
-                              fontSize: 14)),
+                              color: MyTheme.font_color,                              fontSize: 18)),
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -159,11 +156,10 @@ class _MainDrawerState extends State<MainDrawer> {
                       visualDensity:
                           VisualDensity(horizontal: -4, vertical: -4),
                       leading: Image.asset("assets/wallet.png",
-                          height: 16, color: Color.fromRGBO(153, 153, 153, 1)),
+                          height: 16,    color: MyTheme.theme_color,),
                       title: Text('Wallet',
                           style: TextStyle(
-                              color: Color.fromRGBO(153, 153, 153, 1),
-                              fontSize: 14)),
+                              color: MyTheme.font_color,                              fontSize: 18)),
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -177,11 +173,10 @@ class _MainDrawerState extends State<MainDrawer> {
                       visualDensity:
                           VisualDensity(horizontal: -4, vertical: -4),
                       leading: Image.asset("assets/login.png",
-                          height: 16, color: Color.fromRGBO(153, 153, 153, 1)),
+                          height: 16,  color: MyTheme.theme_color,),
                       title: Text('Login',
                           style: TextStyle(
-                              color: Color.fromRGBO(153, 153, 153, 1),
-                              fontSize: 14)),
+                              color: MyTheme.font_color,                              fontSize: 18)),
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
@@ -194,11 +189,11 @@ class _MainDrawerState extends State<MainDrawer> {
                       visualDensity:
                           VisualDensity(horizontal: -4, vertical: -4),
                       leading: Image.asset("assets/logout.png",
-                          height: 16, color: Color.fromRGBO(153, 153, 153, 1)),
+                          height: 16,  color: Colors.red,),
                       title: Text('Logout',
                           style: TextStyle(
-                              color: Color.fromRGBO(153, 153, 153, 1),
-                              fontSize: 14)),
+                              color: Colors.red,
+                              fontSize: 18)),
                       onTap: () {
                         onTapLogout(context);
                       })

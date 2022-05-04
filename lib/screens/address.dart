@@ -416,7 +416,7 @@ class _AddressState extends State<Address> {
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Text("Address *",
                             style: TextStyle(
-                                color: MyTheme.font_grey, fontSize: 12)),
+                                color: MyTheme.font_color, fontSize: 18)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -457,7 +457,7 @@ class _AddressState extends State<Address> {
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Text("City *",
                             style: TextStyle(
-                                color: MyTheme.font_grey, fontSize: 12)),
+                                color: MyTheme.font_color, fontSize: 18)),
                       ),
                       /*Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -535,7 +535,7 @@ class _AddressState extends State<Address> {
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Text("Postal Code",
                             style: TextStyle(
-                                color: MyTheme.font_grey, fontSize: 12)),
+                                color: MyTheme.font_color, fontSize: 18)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -573,7 +573,7 @@ class _AddressState extends State<Address> {
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Text("Country *",
                             style: TextStyle(
-                                color: MyTheme.font_grey, fontSize: 12)),
+                                color: MyTheme.font_color, fontSize: 18)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
@@ -620,7 +620,7 @@ class _AddressState extends State<Address> {
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Text("Phone",
                             style: TextStyle(
-                                color: MyTheme.font_grey, fontSize: 12)),
+                                color: MyTheme.font_color, fontSize: 18)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
@@ -675,7 +675,7 @@ class _AddressState extends State<Address> {
                         child: Text(
                           "CLOSE",
                           style: TextStyle(
-                            color: MyTheme.font_grey,
+                            color: MyTheme.font_color,
                           ),
                         ),
                         onPressed: () {

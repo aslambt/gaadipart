@@ -130,27 +130,28 @@ class _ProfileState extends State<Profile> {
 
   buildBody(context) {
     if (is_logged_in.value == false) {
-      return Container(
-          height: 100,
-          child: Center(
-              child: InkWell(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return Login();
-                  }));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.redAccent
+      return Center(
+        child: Container(
+            height: 100,
+            child: Center(
+                child: InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return Login();
+                    }));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30.0),
+                      color: Colors.purple),
+                    child: Text(
+                        "Please log in to see the profile",
+                        style: TextStyle(color: Colors.white,fontSize: 23),
+                      ),
                   ),
-                  child: Text(
-                      "Please log in to see the profile",
-                      style: TextStyle(color: Colors.white,fontSize: 23),
-                    ),
-                ),
-                ),
-              ));
+                  ),
+                )),
+      );
     } else {
       return RefreshIndicator(
         color: MyTheme.accent_color,

@@ -53,6 +53,19 @@ class CartRepository{
   print(response.body.toString());
     return cartAddResponseFromJson(response.body);
   }
+  // Future<CartAddResponse> getAddCartResponse(
+  //     @required int id, @required String variant,@required int quantity ) async {
+  //
+  //   var post_body = jsonEncode({"id": "${id}", "variant": "$variant","quantity": "$quantity","cost_matrix": AppConfig.purchase_code});
+  //
+  //   print(post_body.toString());
+  //
+  //   final response = await http.post("${AppConfig.BASE_URL}/cart/addtocart",
+  //       headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"},body: post_body );
+  //
+  //   print(response.body.toString());
+  //   return cartAddResponseFromJson(response.body);
+  // }
 
   Future<CartSummaryResponse> getCartSummaryResponse(@required owner_id) async {
     final response = await http.get("${AppConfig.BASE_URL}/cart-summary/${user_id.value}/${owner_id}",
