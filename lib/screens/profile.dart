@@ -144,10 +144,12 @@ class _ProfileState extends State<Profile> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.0),
                       color: Colors.purple),
-                    child: Text(
-                        "Please log in to see the profile",
-                        style: TextStyle(color: Colors.white,fontSize: 23),
-                      ),
+                    child: TextButton(
+                      child: Text(
+                          "Please log in to see the profile",
+                          style: TextStyle(color: Colors.white,fontSize: 23),
+                        ),
+                    ),
                   ),
                   ),
                 )),

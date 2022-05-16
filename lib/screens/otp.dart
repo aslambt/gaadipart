@@ -87,11 +87,11 @@ class _OtpState extends State<Otp> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Container(
-            width: _screen_width * (3 / 4),
-            child: Image.asset(
-                "assets/splash_login_registration_background_image.png"),
-          ),
+          // Container(
+          //   width: _screen_width * (3 / 4),
+          //   child: Image.asset(
+          //       "assets/splash_login_registration_background_image.png"),
+          // ),
           Container(
             width: double.infinity,
             child: SingleChildScrollView(
@@ -116,7 +116,7 @@ class _OtpState extends State<Otp> {
                             : "Phone Number"),
                     style: TextStyle(
                         color: MyTheme.accent_color,
-                        fontSize: 18,
+                        fontSize: 25,
                         fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -129,13 +129,14 @@ class _OtpState extends State<Otp> {
                               "Enter the verification code that sent to your email recently.",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: MyTheme.dark_grey, fontSize: 14))
+                                  color: Colors.black, fontSize: 17))
                           : Text(
                               "Enter the verification code that sent to your phone recently.",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: MyTheme.dark_grey, fontSize: 14))),
+                                  color: MyTheme.dark_grey, fontSize: 17))),
                 ),
+                SizedBox(height: 20,),
                 Container(
                   width: _screen_width * (3 / 4),
                   child: Column(
@@ -148,12 +149,19 @@ class _OtpState extends State<Otp> {
                           children: [
                             Container(
                               height: 36,
-                              child: TextField(
-                                controller: _verificationCodeController,
-                                autofocus: false,
-                                decoration:
-                                    InputDecorations.buildInputDecoration_1(
-                                        hint_text: "A X B 4 J H"),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30.0),
+                                child: TextFormField(
+                                  controller: _verificationCodeController,
+                                  autofocus: false,
+                                  decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide:
+                                      const BorderSide(color: Colors.black26, width: 2),
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ],
@@ -179,7 +187,7 @@ class _OtpState extends State<Otp> {
                               "Confirm",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w600),
                             ),
                             onPressed: () {
@@ -200,9 +208,9 @@ class _OtpState extends State<Otp> {
                     child: Text("Resend Code",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: MyTheme.accent_color,
+                            color: MyTheme.font_color,
                             decoration: TextDecoration.underline,
-                            fontSize: 13)),
+                            fontSize: 14)),
                   ),
                 ),
               ],

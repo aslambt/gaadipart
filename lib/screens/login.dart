@@ -20,15 +20,15 @@ import 'dart:async';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class Login extends StatefulWidget {
+class  Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
   String _login_by = "email"; //phone or email
-  String initialCountry = 'US';
-  PhoneNumber phoneCode = PhoneNumber(isoCode: 'US', dialCode: "+1");
+  String initialCountry = 'IN';
+  PhoneNumber phoneCode = PhoneNumber(isoCode: 'IN', dialCode: "+91");
   String _phone = "";
 
   //controllers
@@ -174,6 +174,8 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final _screen_height = MediaQuery.of(context).size.height;
     final _screen_width = MediaQuery.of(context).size.width;
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -190,7 +192,7 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 40.0, bottom: 0),
+                  padding: const EdgeInsets.only(top: 0, bottom: 0),
                   child: Container(
                     width: 150,
                     height: 150,
@@ -213,16 +215,16 @@ class _LoginState extends State<Login> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Text(
-                          _login_by == "email" ? "Email" : "Phone",
-                          style: TextStyle(
-                              color: MyTheme.font_color,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 4.0),
+                      //   child: Text(
+                      //     _login_by == "email" ? "Email" : "Phone",
+                      //     style: TextStyle(
+                      //         color: MyTheme.font_color,
+                      //         fontSize: 18,
+                      //         fontWeight: FontWeight.w600),
+                      //   ),
+                      // ),
                       if (_login_by == "email")
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
@@ -230,15 +232,20 @@ class _LoginState extends State<Login> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
-                                height: 36,
-                                child: TextField(
-                                  controller: _emailController,
-                                  autofocus: false,
-                                  decoration:
-                                      InputDecorations.buildInputDecoration_1(
-                                          hint_text: "johndoe@example.com"),
+                                width: size.width * 0.8,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: TextFormField(
+                                    controller: _emailController,
+                                    // autofocus: false,
+                                    decoration: InputDecoration(
+                                      hintText: "Email",
+                                      prefixIcon: Icon(Icons.email,color: Colors.blueGrey),
+                                    ),
+                                  ),
                                 ),
                               ),
+                              SizedBox(height: 5),
                               AddonConfig.otp_addon_installed
                                   ? GestureDetector(
                                       onTap: () {
@@ -250,9 +257,7 @@ class _LoginState extends State<Login> {
                                         "or, Login with a phone number",
                                         style: TextStyle(
                                             color: MyTheme.font_color,
-                                            fontStyle: FontStyle.italic,
-                                            decoration:
-                                                TextDecoration.underline),
+                                           ),
                                       ),
                                     )
                                   : Container()
@@ -266,6 +271,7 @@ class _LoginState extends State<Login> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
+                                width: size.width * 0.8,
                                 height: 36,
                                 child: CustomInternationalPhoneNumberInput(
                                   onInputChanged: (PhoneNumber number) {
@@ -293,7 +299,7 @@ class _LoginState extends State<Login> {
                                       signed: true, decimal: true),
                                   inputDecoration: InputDecorations
                                       .buildInputDecoration_phone(
-                                          hint_text: "01710 333 558"),
+                                          ),
                                   onSaved: (PhoneNumber number) {
                                     print('On Saved: $number');
                                   },
@@ -309,41 +315,47 @@ class _LoginState extends State<Login> {
                                   "or, Login with an email",
                                   style: TextStyle(
                                       color: MyTheme.font_color,
-                                      fontStyle: FontStyle.italic,
-                                      decoration: TextDecoration.underline),
+                                      ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Text(
-                          "Password",
-                          style: TextStyle(
-                              color: MyTheme.font_color,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 4.0),
+                      //   child: Text(
+                      //     "Password",
+                      //     style: TextStyle(
+                      //         color: MyTheme.font_color,
+                      //         fontSize: 18,
+                      //         fontWeight: FontWeight.w600),
+                      //   ),
+                      // ),
+                      SizedBox(height: 15),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(
-                              height: 36,
-                              child: TextField(
-                                controller: _passwordController,
-                                autofocus: false,
-                                obscureText: true,
-                                enableSuggestions: false,
-                                autocorrect: false,
-                                decoration:
-                                    InputDecorations.buildInputDecoration_1(
-                                        hint_text: "• • • • • • • •"),
+                              width: size.width * 0.8,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30.0),
+                                child: TextFormField(
+                                  controller: _passwordController,
+                                  autofocus: false,
+                                  obscureText: true,
+                                  enableSuggestions: false,
+                                  autocorrect: false,
+                                  // autofocus: false,
+                                  decoration: InputDecoration(
+                                    hintText: "Password",
+                                    prefixIcon: Icon(Icons.lock,color: Colors.blueGrey,),
+                                  ),
+                                ),
                               ),
                             ),
+                            SizedBox(height: 5),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(context,
@@ -355,8 +367,7 @@ class _LoginState extends State<Login> {
                                 "Forgot Password?",
                                 style: TextStyle(
                                     color: MyTheme.font_color,
-                                    fontStyle: FontStyle.italic,
-                                    decoration: TextDecoration.underline),
+                                    ),
                               ),
                             )
                           ],
@@ -370,7 +381,7 @@ class _LoginState extends State<Login> {
                               border: Border.all(
                                   color: MyTheme.textfield_grey, width: 1),
                               borderRadius: const BorderRadius.all(
-                                  Radius.circular(12.0))),
+                                  Radius.circular(20.0))),
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
@@ -408,7 +419,7 @@ class _LoginState extends State<Login> {
                               border: Border.all(
                                   color: MyTheme.textfield_grey, width: 1),
                               borderRadius: const BorderRadius.all(
-                                  Radius.circular(12.0))),
+                                  Radius.circular(20.0))),
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,

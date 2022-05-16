@@ -20,7 +20,7 @@ class Registration extends StatefulWidget {
 class _RegistrationState extends State<Registration> {
   String _register_by = "email"; //phone or email
   String initialCountry = 'US';
-  PhoneNumber phoneCode = PhoneNumber(isoCode: 'US', dialCode: "+1");
+  PhoneNumber phoneCode = PhoneNumber(isoCode: 'IN', dialCode: "91");
 
   String _phone = "";
 
@@ -111,6 +111,8 @@ class _RegistrationState extends State<Registration> {
   Widget build(BuildContext context) {
     final _screen_height = MediaQuery.of(context).size.height;
     final _screen_width = MediaQuery.of(context).size.width;
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -144,56 +146,88 @@ class _RegistrationState extends State<Registration> {
                         fontWeight: FontWeight.w600),
                   ),
                 ),
-                SizedBox(height: 75,),
+                SizedBox(height: 60),
                 Container(
                   width: _screen_width * (3 / 4),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Text(
-                          "Name",
-                          style: TextStyle(
-                              color: MyTheme.font_color,
-                              fontSize: 19,fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Container(
-                          height: 40,
-                          child: TextField(
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 4.0),
+                      //   child: Text(
+                      //     "Name",
+                      //     style: TextStyle(
+                      //         color: MyTheme.font_color,
+                      //         fontSize: 19,fontWeight: FontWeight.bold),
+                      //   ),
+                      // ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 8.0),
+                      //   child: Container(
+                      //     height: 40,
+                      //     child: TextField(
+                      //       controller: _nameController,
+                      //       autofocus: false,
+                      //       decoration: InputDecorations.buildInputDecoration_1(
+                      //           hint_text: "John Doe"),
+                      //     ),
+                      //   ),
+                      // ),
+                      Container(
+                        width: size.width * 0.8,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30.0),
+                          child: TextFormField(
                             controller: _nameController,
-                            autofocus: false,
-                            decoration: InputDecorations.buildInputDecoration_1(
-                                hint_text: "John Doe"),
+                            // autofocus: false,
+                            // autofocus: false,
+                            decoration: InputDecoration(
+                              hintText: "Name",
+                              prefixIcon: Icon(Icons.person,color: Colors.blueGrey),
+                              // focusedBorder: OutlineInputBorder(borderSide: const BorderSide(color: Colors.black) ),
+                            ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Text(
-                          _register_by == "email" ? "Email" : "Phone",
-                          style: TextStyle(
-                              color: MyTheme.font_color,
-                              fontSize: 19,fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 4.0),
+                      //   child: Text(
+                      //     _register_by == "email" ? "Email" : "Phone",
+                      //     style: TextStyle(
+                      //         color: MyTheme.font_color,
+                      //         fontSize: 19,fontWeight: FontWeight.bold),
+                      //   ),
+                      // ),
                       if (_register_by == "email")
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
+                              // Container(
+                              //   height: 40,
+                              //   child: TextField(
+                              //     controller: _emailController,
+                              //     autofocus: false,
+                              //     decoration:
+                              //         InputDecorations.buildInputDecoration_1(
+                              //             hint_text: "johndoe@example.com"),
+                              //   ),
+                              // ),
+                              SizedBox(height: 15),
                               Container(
-                                height: 40,
-                                child: TextField(
-                                  controller: _emailController,
-                                  autofocus: false,
-                                  decoration:
-                                      InputDecorations.buildInputDecoration_1(
-                                          hint_text: "johndoe@example.com"),
+                                width: size.width * 0.8,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: TextFormField(
+                                    controller: _emailController,
+                                    autofocus: false,
+                                    // autofocus: false,
+                                    decoration: InputDecoration(
+                                      hintText: "Email",
+                                      prefixIcon: Icon(Icons.email,color: Colors.blueGrey),
+                                    ),
+                                  ),
                                 ),
                               ),
                               AddonConfig.otp_addon_installed
@@ -207,9 +241,7 @@ class _RegistrationState extends State<Registration> {
                                         "or, Register with a phone number",
                                         style: TextStyle(
                                             color: MyTheme.font_color,
-                                            fontStyle: FontStyle.italic,
-                                            decoration:
-                                                TextDecoration.underline),
+                                        ),
                                       ),
                                     )
                                   : Container()
@@ -248,7 +280,7 @@ class _RegistrationState extends State<Registration> {
                                       signed: true, decimal: true),
                                   inputDecoration: InputDecorations
                                       .buildInputDecoration_phone(
-                                          hint_text: "01710 333 558"),
+                                          ),
                                   onSaved: (PhoneNumber number) {
                                     //print('On Saved: $number');
                                   },
@@ -263,74 +295,110 @@ class _RegistrationState extends State<Registration> {
                                 child: Text(
                                   "or, Register with an email",
                                   style: TextStyle(
-                                      color: MyTheme.accent_color,
-                                      fontStyle: FontStyle.italic,
-                                      decoration: TextDecoration.underline),
+                                      color: MyTheme.font_color,
+                                    ),
                                 ),
                               )
                             ],
                           ),
                         ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Text(
-                          "Password",
-                          style: TextStyle(
-                              color: MyTheme.font_color,
-                              fontWeight: FontWeight.bold,fontSize: 19),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 4.0),
+                      //   child: Text(
+                      //     "Password",
+                      //     style: TextStyle(
+                      //         color: MyTheme.font_color,
+                      //         fontWeight: FontWeight.bold,fontSize: 19),
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
+                            // Container(
+                            //   height: 40,
+                            //   child: TextField(
+                            //     controller: _passwordController,
+                            //     autofocus: false,
+                            //     obscureText: true,
+                            //     enableSuggestions: false,
+                            //     autocorrect: false,
+                            //     decoration:
+                            //         InputDecorations.buildInputDecoration_1(
+                            //             hint_text: "• • • • • • • •"),
+                            //   ),
+                            // ),
+                            SizedBox(height: 15),
+
+
                             Container(
-                              height: 40,
-                              child: TextField(
-                                controller: _passwordController,
-                                autofocus: false,
-                                obscureText: true,
-                                enableSuggestions: false,
-                                autocorrect: false,
-                                decoration:
-                                    InputDecorations.buildInputDecoration_1(
-                                        hint_text: "• • • • • • • •"),
+                              width: size.width * 0.8,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30.0),
+                                child: TextFormField(
+                                  controller: _passwordController,
+                                  autofocus: false,
+                                  obscureText: true,
+                                  enableSuggestions: false,
+                                  autocorrect: false,
+                                  // autofocus: false,
+                                  decoration: InputDecoration(
+                                    hintText: "Password",
+                                    prefixIcon: Icon(Icons.lock,color: Colors.blueGrey),
+                                  ),
+                                ),
                               ),
                             ),
-                            Text(
-                              "Password must be at least 6 character",
-                              style: TextStyle(
-                                  color: MyTheme.font_color,
-                                  fontStyle: FontStyle.italic),
-                            )
+
+
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Text(
-                          "Confirm Password",
-                          style: TextStyle(
-                              color: MyTheme.font_color,
-                              fontWeight: FontWeight.bold,fontSize: 19),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Container(
-                          height: 40,
-                          child: TextField(
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 4.0),
+                      //   child: Text(
+                      //     "Confirm Password",
+                      //     style: TextStyle(
+                      //         color: MyTheme.font_color,
+                      //         fontWeight: FontWeight.bold,fontSize: 19),
+                      //   ),
+                      // ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 8.0),
+                      //   child: Container(
+                      //     height: 40,
+                      //     child: TextField(
+                      //       controller: _passwordConfirmController,
+                      //       autofocus: false,
+                      //       obscureText: true,
+                      //       enableSuggestions: false,
+                      //       autocorrect: false,
+                      //       decoration: InputDecorations.buildInputDecoration_1(
+                      //           hint_text: "* * * * * * *"),
+                      //     ),
+                      //   ),
+                      // ),
+                      SizedBox(height: 15),
+                      Container(
+                        width: size.width * 0.8,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30.0),
+                          child: TextFormField(
                             controller: _passwordConfirmController,
                             autofocus: false,
                             obscureText: true,
                             enableSuggestions: false,
                             autocorrect: false,
-                            decoration: InputDecorations.buildInputDecoration_1(
-                                hint_text: "* * * * * * *"),
+                            // autofocus: false,
+                            decoration: InputDecoration(
+                              hintText: "Confirm Password",
+                              prefixIcon: Icon(Icons.lock,color: Colors.blueGrey),
+                            ),
                           ),
                         ),
                       ),
+                      SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(top: 30.0),
                         child: Container(
@@ -339,14 +407,14 @@ class _RegistrationState extends State<Registration> {
                               border: Border.all(
                                   color: MyTheme.textfield_grey, width: 1),
                               borderRadius: const BorderRadius.all(
-                                  Radius.circular(12.0))),
+                                  Radius.circular(20.0))),
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
                             color: MyTheme.accent_color,
                             shape: RoundedRectangleBorder(
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(12.0))),
+                                    Radius.circular(20.0))),
                             child: Text(
                               "Sign Up",
                               style: TextStyle(
@@ -369,6 +437,7 @@ class _RegistrationState extends State<Registration> {
                               color: MyTheme.font_color, fontSize: 12),
                         )),
                       ),
+                      SizedBox(height: 5),
                       Padding(
                         padding: const EdgeInsets.only(top: 4.0),
                         child: Container(
@@ -377,14 +446,14 @@ class _RegistrationState extends State<Registration> {
                               border: Border.all(
                                   color: MyTheme.textfield_grey, width: 1),
                               borderRadius: const BorderRadius.all(
-                                  Radius.circular(12.0))),
+                                  Radius.circular(20.0))),
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
-                            color: MyTheme.golden,
+                            color: MyTheme.theme_color,
                             shape: RoundedRectangleBorder(
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(12.0))),
+                                    Radius.circular(20.0))),
                             child: Text(
                               "Log in",
                               style: TextStyle(

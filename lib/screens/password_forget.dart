@@ -17,8 +17,8 @@ class PasswordForget extends StatefulWidget {
 
 class _PasswordForgetState extends State<PasswordForget> {
   String _send_code_by = "email"; //phone or email
-  String initialCountry = 'US';
-  PhoneNumber phoneCode = PhoneNumber(isoCode: 'US');
+  String initialCountry = 'IN';
+  PhoneNumber phoneCode = PhoneNumber(isoCode: 'IN');
   String _phone = "";
 
   //controllers
@@ -76,6 +76,8 @@ class _PasswordForgetState extends State<PasswordForget> {
   Widget build(BuildContext context) {
     final _screen_height = MediaQuery.of(context).size.height;
     final _screen_width = MediaQuery.of(context).size.width;
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -116,29 +118,45 @@ class _PasswordForgetState extends State<PasswordForget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Text(
-                          _send_code_by == "email" ? "Email" : "Phone",
-                          style: TextStyle(
-                              color: MyTheme.font_color,
-                              fontWeight: FontWeight.bold,fontSize: 19),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(bottom: 4.0),
+                      //   child: Text(
+                      //     _send_code_by == "email" ? "Email" : "Phone",
+                      //     style: TextStyle(
+                      //         color: MyTheme.font_color,
+                      //         fontWeight: FontWeight.bold,fontSize: 19),
+                      //   ),
+                      // ),
                       if (_send_code_by == "email")
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
+                              // Container(
+                              //   height: 46,
+                              //   child: TextField(
+                              //     controller: _emailController,
+                              //     autofocus: false,
+                              //     decoration:
+                              //         InputDecorations.buildInputDecoration_1(
+                              //             hint_text: "johndoe@example.com"),
+                              //   ),
+                              // ),
+
+
                               Container(
-                                height: 46,
-                                child: TextField(
-                                  controller: _emailController,
-                                  autofocus: false,
-                                  decoration:
-                                      InputDecorations.buildInputDecoration_1(
-                                          hint_text: "johndoe@example.com"),
+                                width: size.width * 0.8,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: TextFormField(
+                                    controller: _emailController,
+                                    autofocus: false,
+                                    decoration: InputDecoration(
+                                      hintText: "Email",
+                                      prefixIcon: Icon(Icons.email,color: Colors.blueGrey),
+                                    ),
+                                  ),
                                 ),
                               ),
                               AddonConfig.otp_addon_installed
@@ -151,10 +169,9 @@ class _PasswordForgetState extends State<PasswordForget> {
                                       child: Text(
                                         "or, send code via phone number",
                                         style: TextStyle(
+                                          decoration: TextDecoration.underline,
                                             color: MyTheme.font_color,
-                                            fontStyle: FontStyle.italic,
-                                            decoration:
-                                                TextDecoration.underline),
+                                            ),
                                       ),
                                     )
                                   : Container()
@@ -193,7 +210,7 @@ class _PasswordForgetState extends State<PasswordForget> {
                                       signed: true, decimal: true),
                                   inputDecoration: InputDecorations
                                       .buildInputDecoration_phone(
-                                          hint_text: "01710 333 558"),
+                                         ),
                                   onSaved: (PhoneNumber number) {
                                     print('On Saved: $number');
                                   },
@@ -225,14 +242,14 @@ class _PasswordForgetState extends State<PasswordForget> {
                               border: Border.all(
                                   color: MyTheme.textfield_grey, width: 1),
                               borderRadius: const BorderRadius.all(
-                                  Radius.circular(12.0))),
+                                  Radius.circular(20.0))),
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
                             color: MyTheme.accent_color,
                             shape: RoundedRectangleBorder(
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(12.0))),
+                                    Radius.circular(20.0))),
                             child: Text(
                               "Send Code",
                               style: TextStyle(
