@@ -54,7 +54,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return CustomSplashScreen(
       //comment this
-      seconds: 4,
+      seconds: 3,
 
       //comment this
       navigateAfterSeconds: Main(),

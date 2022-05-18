@@ -231,7 +231,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                     clipBehavior: Clip.hardEdge,
                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
                     child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/placeholder.png',
+                      placeholder: 'assets/no-profile-picture1.jpg',
                       image: AppConfig.BASE_PATH + "${avatar_original.value}",
                       fit: BoxFit.fill,
                     )),
@@ -268,6 +268,7 @@ class _ProfileEditState extends State<ProfileEdit> {
   }
 
   buildProfileForm(context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding:
           const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 16.0, right: 16.0),
@@ -278,87 +279,139 @@ class _ProfileEditState extends State<ProfileEdit> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Text(
-                "Basic Information",
+                "Edit profile",
                 style: TextStyle(
                     color: MyTheme.grey_153,
                     fontWeight: FontWeight.w600,
                     fontSize: 14.0),
               ),
             ),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(bottom: 4.0),
               child: Text(
                 "Name",
                 style: TextStyle(
-                    color: MyTheme.accent_color, fontWeight: FontWeight.w600),
+                    color: MyTheme.font_color, fontWeight: FontWeight.w600,fontSize: 15),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: Container(
-                height: 36,
-                child: TextField(
-                  controller: _nameController,
-                  autofocus: false,
-                  decoration: InputDecorations.buildInputDecoration_1(
-                      hint_text: "John Doe"),
+              child:
+              // Container(
+              //   height: 36,
+              //   child: TextField(
+              //     controller: _nameController,
+              //     autofocus: false,
+              //     decoration: InputDecorations.buildInputDecoration_1(
+              //         hint_text: "John Doe"),
+              //   ),
+              // ),
+              Container(
+                width: size.width * 0.8,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30.0),
+                  child: TextFormField(
+                    controller: _nameController,
+                     autofocus: false,
+                    decoration: InputDecoration(
+
+                      prefixIcon: Icon(Icons.person_rounded,color: Colors.blueGrey),
+                    ),
+                  ),
                 ),
               ),
             ),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(bottom: 4.0),
               child: Text(
-                "Password",
+                "New Password",
                 style: TextStyle(
-                    color: MyTheme.accent_color, fontWeight: FontWeight.w600),
+                    color: MyTheme.font_color, fontWeight: FontWeight.w600,fontSize: 15),
               ),
             ),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  // Container(
+                  //   height: 36,
+                  //   child: TextField(
+                  //     controller: _passwordController,
+                  //     autofocus: false,
+                  //     obscureText: true,
+                  //     enableSuggestions: false,
+                  //     autocorrect: false,
+                  //     decoration: InputDecorations.buildInputDecoration_1(
+                  //         hint_text: "• • • • • • • •"),
+                  //   ),
+                  // ),
                   Container(
-                    height: 36,
-                    child: TextField(
-                      controller: _passwordController,
-                      autofocus: false,
-                      obscureText: true,
-                      enableSuggestions: false,
-                      autocorrect: false,
-                      decoration: InputDecorations.buildInputDecoration_1(
-                          hint_text: "• • • • • • • •"),
+                    width: size.width * 0.8,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30.0),
+                      child: TextFormField(
+                        controller: _passwordController,
+                        autofocus: false,
+                        obscureText: true,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.vpn_lock,color: Colors.blueGrey),
+                        ),
+                      ),
                     ),
                   ),
                   Text(
                     "Password must be at least 6 character",
                     style: TextStyle(
                         color: MyTheme.textfield_grey,
-                        fontStyle: FontStyle.italic),
+                        ),
                   )
                 ],
               ),
             ),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(bottom: 4.0),
               child: Text(
                 "Confirm Password",
                 style: TextStyle(
-                    color: MyTheme.accent_color, fontWeight: FontWeight.w600),
+                    color: MyTheme.font_color, fontWeight: FontWeight.w600,fontSize: 15),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: Container(
-                height: 36,
-                child: TextField(
-                  controller: _passwordConfirmController,
-                  autofocus: false,
-                  obscureText: true,
-                  enableSuggestions: false,
-                  autocorrect: false,
-                  decoration: InputDecorations.buildInputDecoration_1(
-                      hint_text: "• • • • • • • •"),
+              child:
+              // Container(
+              //   height: 36,
+              //   child: TextField(
+              //     controller: _passwordConfirmController,
+              //     autofocus: false,
+              //     obscureText: true,
+              //     enableSuggestions: false,
+              //     autocorrect: false,
+              //     decoration: InputDecorations.buildInputDecoration_1(
+              //         hint_text: "• • • • • • • •"),
+              //   ),
+              // ),
+              Container(
+                width: size.width * 0.8,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30.0),
+                  child: TextFormField(
+                    controller: _passwordConfirmController,
+                    autofocus: false,
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.vpn_lock,color: Colors.blueGrey),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -374,14 +427,14 @@ class _ProfileEditState extends State<ProfileEdit> {
                         border:
                             Border.all(color: MyTheme.textfield_grey, width: 1),
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(8.0))),
+                            const BorderRadius.all(Radius.circular(12.0))),
                     child: FlatButton(
                       minWidth: MediaQuery.of(context).size.width,
                       //height: 50,
                       color: MyTheme.accent_color,
                       shape: RoundedRectangleBorder(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(8.0))),
+                              const BorderRadius.all(Radius.circular(12.0))),
                       child: Text(
                         "Update Profile",
                         style: TextStyle(

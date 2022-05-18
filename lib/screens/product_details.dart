@@ -26,6 +26,8 @@ import 'package:gaadipart/repositories/chat_repository.dart';
 import 'package:gaadipart/screens/chat.dart';
 import 'package:toast/toast.dart';
 
+import 'login.dart';
+
 class ProductDetails extends StatefulWidget {
   int id;
 
@@ -188,8 +190,9 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   onWishTap() {
     if (is_logged_in.value == false) {
-      ToastComponent.showDialog("You need to log in", context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+      // ToastComponent.showDialog("You need to log in", context,
+      //     gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+      showAlert(context);
       return;
     }
 
@@ -296,9 +299,9 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   addToCart({mode, context = null, snackbar = null}) async {
     if (is_logged_in.value == false) {
-      ToastComponent.showDialog("You are not logged in", context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-
+      // ToastComponent.showDialog("You are not logged in", context,
+      //     gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+      showAlert(context);
       return;
     }
 
@@ -1089,8 +1092,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             InkWell(
               onTap: () {
                 if (is_logged_in.value == false) {
-                  ToastComponent.showDialog("You need to log in", context,
-                      gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+                  showAlert(context);
                   return;
                 }
 
@@ -1635,7 +1637,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: Icon(
                   FontAwesome.heart,
                   color: Color.fromRGBO(230, 46, 4, 1),
-                  size: 20,
+                  size: 25,
                 ),
               )
             : InkWell(
@@ -1645,7 +1647,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: Icon(
                   FontAwesome.heart_o,
                   color: Color.fromRGBO(230, 46, 4, 1),
-                  size: 20,
+                  size: 25,
                 ),
               )
       ],
@@ -1941,4 +1943,53 @@ class _ProductDetailsState extends State<ProductDetails> {
       );
     }
   }
+
+  showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          elevation: 0,
+          // backgroundColor: Colors.transparent,
+          title: new Text('you are not logged in!'),
+          actions: <Widget>[
+            Row(
+              children: [
+                FlatButton(
+
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(Constants.padding),
+                  ),
+                  child: new Text("Cancel"),
+                  onPressed: () {
+                   Navigator.of(context).pop();
+                  },
+                ),
+                SizedBox(width: 15),
+                FlatButton(
+                  color: Colors.purple,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(Constants.padding),
+                  ),
+                  child: new Text("Login"),
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                          return Login();
+                        }));
+                  },
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+
+class Constants{
+  Constants._();
+  static const double padding =20;
 }

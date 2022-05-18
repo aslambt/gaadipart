@@ -43,8 +43,8 @@ class _MainDrawerState extends State<MainDrawer> {
                    gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
          }
          */
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return Login();
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+      return Main();
     }));
   }
 

@@ -254,8 +254,9 @@ class _LoginState extends State<Login> {
                                         });
                                       },
                                       child: Text(
-                                        "or, Login with a phone number",
+                                        "or, Login with phone",
                                         style: TextStyle(
+                                          decoration: TextDecoration.underline,
                                             color: MyTheme.font_color,
                                            ),
                                       ),
@@ -366,6 +367,7 @@ class _LoginState extends State<Login> {
                               child: Text(
                                 "Forgot Password?",
                                 style: TextStyle(
+                                  decoration: TextDecoration.underline,
                                     color: MyTheme.font_color,
                                     ),
                               ),

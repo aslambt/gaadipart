@@ -471,15 +471,15 @@ class _CartState extends State<Cart> {
   }
 
   buildCartSellerList() {
-    // if (is_logged_in.value == false) {
-    //   return Container(
-    //       height: 100,
-    //       child: Center(
-    //           child: Text(
-    //         "Please log in to see the cart items",
-    //         style: TextStyle(color: MyTheme.font_grey),
-    //       )));
-    // } else
+    if (is_logged_in.value == false) {
+      return Container(
+          height: 100,
+          child: Center(
+              child: Text(
+            "Please log in to see the cart items",
+            style: TextStyle(color: MyTheme.font_grey),
+          )));
+    } else
     if (_isInitial && _shopList.length == 0) {
       return SingleChildScrollView(
           child: ShimmerHelper()

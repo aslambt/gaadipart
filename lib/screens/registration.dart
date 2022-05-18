@@ -238,8 +238,9 @@ class _RegistrationState extends State<Registration> {
                                         });
                                       },
                                       child: Text(
-                                        "or, Register with a phone number",
+                                        "or, Register with phone",
                                         style: TextStyle(
+                                          decoration: TextDecoration.underline,
                                             color: MyTheme.font_color,
                                         ),
                                       ),
