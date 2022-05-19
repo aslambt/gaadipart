@@ -145,12 +145,13 @@ class _ProfileState extends State<Profile> {
                       borderRadius: BorderRadius.circular(30.0),
                       color: Colors.purple),
                     child: TextButton(
+                      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                       child: Text(
                           "Please log in to see the profile",
-                          style: TextStyle(color: Colors.white,fontSize: 23),
+                          style: TextStyle(color: Colors.white,fontSize: 20),
                         ),
                     ),
-                  ),
+                   ),
                   ),
                 )),
       );
@@ -510,7 +511,7 @@ class _ProfileState extends State<Profile> {
                 clipBehavior: Clip.hardEdge,
                 borderRadius: BorderRadius.all(Radius.circular(100.0)),
                 child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/placeholder.png',
+                  placeholder: 'assets/no_user.png',
                   image: AppConfig.BASE_PATH + "${avatar_original.value}",
                   fit: BoxFit.fill,
                 )),

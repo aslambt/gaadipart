@@ -66,7 +66,7 @@ class _OtpState extends State<Otp> {
 
     if (confirmCodeResponse.result == false) {
       ToastComponent.showDialog(confirmCodeResponse.message, context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+          gravity: Toast.BOTTOM, duration: Toast.LENGTH_LONG);
     } else {
       ToastComponent.showDialog(confirmCodeResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
@@ -83,6 +83,8 @@ class _OtpState extends State<Otp> {
     String _verify_by = widget.verify_by; //phone or email
     final _screen_height = MediaQuery.of(context).size.height;
     final _screen_width = MediaQuery.of(context).size.width;
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -101,10 +103,10 @@ class _OtpState extends State<Otp> {
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 15),
                   child: Container(
-                    width: 75,
-                    height: 75,
-                    child:
-                        Image.asset('assets/login_registration_form_logo.png'),
+                    width: 40,
+                    height: 40,
+                    // child:
+                    //     Image.asset('assets/login_registration_form_logo.png'),
                   ),
                 ),
                 Padding(
@@ -148,21 +150,27 @@ class _OtpState extends State<Otp> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Container(
-                              height: 36,
+                              width: size.width * 0.8,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30.0),
                                 child: TextFormField(
                                   controller: _verificationCodeController,
                                   autofocus: false,
+                                  obscureText: true,
+                                  enableSuggestions: false,
+                                  autocorrect: false,
+                                  // autofocus: false,
                                   decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
                                       const BorderSide(color: Colors.black26, width: 2),
                                       borderRadius: BorderRadius.circular(30),
                                     ),
+                                    hintText: "Enter OTP ",
+                                   ),
                                   ),
                                 ),
-                              ),
+
                             ),
                           ],
                         ),
@@ -175,14 +183,14 @@ class _OtpState extends State<Otp> {
                               border: Border.all(
                                   color: MyTheme.textfield_grey, width: 1),
                               borderRadius: const BorderRadius.all(
-                                  Radius.circular(12.0))),
+                                  Radius.circular(20.0))),
                           child: FlatButton(
                             minWidth: MediaQuery.of(context).size.width,
                             //height: 50,
                             color: MyTheme.accent_color,
                             shape: RoundedRectangleBorder(
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(12.0))),
+                                    Radius.circular(20.0))),
                             child: Text(
                               "Confirm",
                               style: TextStyle(
@@ -200,7 +208,7 @@ class _OtpState extends State<Otp> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 100),
+                  padding: const EdgeInsets.only(top: 200),
                   child: InkWell(
                     onTap: (){
                       onTapResend();
@@ -210,7 +218,7 @@ class _OtpState extends State<Otp> {
                         style: TextStyle(
                             color: MyTheme.font_color,
                             decoration: TextDecoration.underline,
-                            fontSize: 14)),
+                            fontSize: 17)),
                   ),
                 ),
               ],

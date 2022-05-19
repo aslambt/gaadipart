@@ -346,7 +346,7 @@ class _RegistrationState extends State<Registration> {
                                   // autofocus: false,
                                   decoration: InputDecoration(
                                     hintText: "Password",
-                                    prefixIcon: Icon(Icons.lock,color: Colors.blueGrey),
+                                    prefixIcon: Icon(Icons.lock,color: Colors.blueGrey)
                                   ),
                                 ),
                               ),

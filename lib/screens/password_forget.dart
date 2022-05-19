@@ -153,7 +153,7 @@ class _PasswordForgetState extends State<PasswordForget> {
                                     controller: _emailController,
                                     autofocus: false,
                                     decoration: InputDecoration(
-                                      hintText: "Email",
+                                      hintText: "Enter email",
                                       prefixIcon: Icon(Icons.email,color: Colors.blueGrey),
                                     ),
                                   ),

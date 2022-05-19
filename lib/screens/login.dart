@@ -30,6 +30,7 @@ class _LoginState extends State<Login> {
   String initialCountry = 'IN';
   PhoneNumber phoneCode = PhoneNumber(isoCode: 'IN', dialCode: "+91");
   String _phone = "";
+  bool _isObscure = true;
 
   //controllers
   TextEditingController _phoneNumberController = TextEditingController();
@@ -345,13 +346,21 @@ class _LoginState extends State<Login> {
                                 child: TextFormField(
                                   controller: _passwordController,
                                   autofocus: false,
-                                  obscureText: true,
+                                  obscureText: _isObscure,
                                   enableSuggestions: false,
                                   autocorrect: false,
                                   // autofocus: false,
                                   decoration: InputDecoration(
                                     hintText: "Password",
                                     prefixIcon: Icon(Icons.lock,color: Colors.blueGrey,),
+                                    suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _isObscure ? Icons.visibility_off : Icons.visibility,color: Colors.blueGrey,),
+                                        onPressed: () {
+                                          setState(() {
+                                            _isObscure = !_isObscure;
+                                          });
+                                        }),
                                   ),
                                 ),
                               ),

@@ -231,7 +231,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                     clipBehavior: Clip.hardEdge,
                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
                     child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/no-profile-picture1.jpg',
+                      placeholder: 'assets/no_user.png',
                       image: AppConfig.BASE_PATH + "${avatar_original.value}",
                       fit: BoxFit.fill,
                     )),
@@ -247,7 +247,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                     child: Icon(
                       Icons.edit,
                       color: MyTheme.font_grey,
-                      size: 14,
+                      size: 16,
                     ),
                     shape: CircleBorder(
                       side:

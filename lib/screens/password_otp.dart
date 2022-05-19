@@ -22,6 +22,7 @@ class _PasswordOtpState extends State<PasswordOtp> {
   TextEditingController _codeController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _passwordConfirmController = TextEditingController();
+  bool _isObscure = true;
 
   @override
   void initState() {
@@ -205,6 +206,7 @@ class _PasswordOtpState extends State<PasswordOtp> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30.0),
                                 child: TextFormField(
+                                  obscureText: _isObscure,
                                   controller: _passwordController,
                                   autofocus: false,
                                   enableSuggestions: false,
@@ -212,6 +214,14 @@ class _PasswordOtpState extends State<PasswordOtp> {
                                   decoration: InputDecoration(
                                     hintText: "Password",
                                     prefixIcon: Icon(Icons.lock,color: Colors.blueGrey),
+                                    suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _isObscure ? Icons.visibility_off : Icons.visibility,color: Colors.blueGrey,),
+                                        onPressed: () {
+                                          setState(() {
+                                            _isObscure = !_isObscure;
+                                          });
+                                        }),
                                   ),
                                 ),
                               ),
