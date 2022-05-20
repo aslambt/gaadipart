@@ -1042,7 +1042,7 @@ class _AddressState extends State<Address> {
       title: Column(
         children: [
           Text(
-            "Addresses of user",
+            "Address",
             style: TextStyle(fontSize: 16, color: MyTheme.accent_color),
           ),
           Text(
@@ -1089,7 +1089,7 @@ class _AddressState extends State<Address> {
           height: 100,
           child: Center(
               child: Text(
-            "No Addresses is added",
+            "No Address is added",
             style: TextStyle(color: MyTheme.font_grey),
           )));
     }

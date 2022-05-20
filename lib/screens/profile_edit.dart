@@ -247,7 +247,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                     child: Icon(
                       Icons.edit,
                       color: MyTheme.font_grey,
-                      size: 16,
+                      size: 18,
                     ),
                     shape: CircleBorder(
                       side:
