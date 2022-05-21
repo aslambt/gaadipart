@@ -258,7 +258,7 @@ class _ShippingInfoState extends State<ShippingInfo> {
         appBar: buildAppBar(context),
         bottomNavigationBar: buildBottomAppBar(context),
         body: RefreshIndicator(
-          color: MyTheme.accent_color,
+          color: MyTheme.font_color,
           backgroundColor: Colors.white,
           onRefresh: _onRefresh,
           displacement: 0,

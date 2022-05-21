@@ -1283,7 +1283,7 @@ class _AddressState extends State<Address> {
                     padding: const EdgeInsets.only(
                         top: 12.0, left: 16.0, right: 16.0, bottom: 16.0),
                     child: Icon(
-                      Icons.delete_forever_outlined,
+                      Icons.delete,
                       color: MyTheme.dark_grey,
                       size: 16,
                     ),

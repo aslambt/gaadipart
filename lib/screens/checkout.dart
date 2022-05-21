@@ -532,7 +532,7 @@ class _CheckoutState extends State<Checkout> {
         body: Stack(
           children: [
             RefreshIndicator(
-              color: MyTheme.accent_color,
+              color: MyTheme.font_color,
               backgroundColor: Colors.white,
               onRefresh: _onRefresh,
               displacement: 0,
@@ -579,7 +579,7 @@ class _CheckoutState extends State<Checkout> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            color: MyTheme.soft_accent_color),
+                            color: MyTheme.golden),
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: Row(
@@ -589,7 +589,7 @@ class _CheckoutState extends State<Checkout> {
                                 child: Text(
                                   "Total Amount",
                                   style: TextStyle(
-                                      color: MyTheme.font_grey, fontSize: 14),
+                                      color: MyTheme.font_color, fontSize: 14),
                                 ),
                               ),
                               Padding(
@@ -613,8 +613,8 @@ class _CheckoutState extends State<Checkout> {
                                 padding: const EdgeInsets.only(right: 16.0),
                                 child: Text(_totalString,
                                     style: TextStyle(
-                                        color: MyTheme.accent_color,
-                                        fontSize: 14,
+                                        color: MyTheme.font_color,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w600)),
                               ),
                             ],
@@ -670,7 +670,7 @@ class _CheckoutState extends State<Checkout> {
                 child: FlatButton(
                   minWidth: MediaQuery.of(context).size.width,
                   //height: 50,
-                  color: MyTheme.accent_color,
+                  color: MyTheme.golden,
                   shape: RoundedRectangleBorder(
                       borderRadius: const BorderRadius.only(
                     topRight: const Radius.circular(8.0),
@@ -679,7 +679,7 @@ class _CheckoutState extends State<Checkout> {
                   child: Text(
                     "APPLY COUPON",
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 13,
                         fontWeight: FontWeight.w600),
                   ),

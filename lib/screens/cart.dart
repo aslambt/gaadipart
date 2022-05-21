@@ -269,7 +269,7 @@ class _CartState extends State<Cart> {
         body: Stack(
           children: [
             RefreshIndicator(
-              color: MyTheme.accent_color,
+              color: MyTheme.font_color,
               backgroundColor: Colors.white,
               onRefresh: _onRefresh,
               displacement: 0,
@@ -338,8 +338,8 @@ class _CartState extends State<Cart> {
                       padding: const EdgeInsets.only(right: 16.0),
                       child: Text("$_cartTotalString",
                           style: TextStyle(
-                              color: MyTheme.accent_color,
-                              fontSize: 14,
+                              color: MyTheme.font_color,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600)),
                     ),
                   ],
@@ -527,7 +527,7 @@ class _CartState extends State<Cart> {
                           child: Text(
                             partialTotalString(index),
                             style: TextStyle(
-                                color: MyTheme.accent_color, fontSize: 14),
+                                color: MyTheme.font_color, fontSize: 16),
                           ),
                         ),
                       ],
@@ -649,7 +649,7 @@ class _CartState extends State<Cart> {
                                     .id);
                               },
                               icon: Icon(
-                                Icons.delete_forever_outlined,
+                                Icons.delete,
                                 color: MyTheme.medium_grey,
                                 size: 24,
                               ),
@@ -676,7 +676,7 @@ class _CartState extends State<Cart> {
                   padding: EdgeInsets.all(0),
                   child: Icon(
                     Icons.add,
-                    color: MyTheme.accent_color,
+                    color: MyTheme.font_color,
                     size: 18,
                   ),
                   shape: CircleBorder(
@@ -705,7 +705,7 @@ class _CartState extends State<Cart> {
                   padding: EdgeInsets.all(0),
                   child: Icon(
                     Icons.remove,
-                    color: MyTheme.accent_color,
+                    color: MyTheme.font_color,
                     size: 18,
                   ),
                   height: 30,

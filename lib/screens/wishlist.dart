@@ -73,7 +73,7 @@ class _WishlistState extends State<Wishlist> {
         backgroundColor: Colors.white,
         appBar: buildAppBar(context),
         body: RefreshIndicator(
-          color: MyTheme.accent_color,
+          color: MyTheme.font_color,
           backgroundColor: Colors.white,
           onRefresh: _onPageRefresh,
           child: CustomScrollView(
@@ -101,7 +101,7 @@ class _WishlistState extends State<Wishlist> {
       ),
       title: Text(
         "My Wishlist",
-        style: TextStyle(fontSize: 16, color: MyTheme.accent_color),
+        style: TextStyle(fontSize: 18, color: MyTheme.accent_color),
       ),
       elevation: 0.0,
       titleSpacing: 0,
@@ -221,7 +221,7 @@ class _WishlistState extends State<Wishlist> {
             bottom: 8,
             right: 12,
             child: IconButton(
-              icon: Icon(Icons.delete_forever_outlined,
+              icon: Icon(Icons.delete,
                   color: MyTheme.medium_grey),
               onPressed: () {
                 _onPressRemove(index);

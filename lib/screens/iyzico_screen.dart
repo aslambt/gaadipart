@@ -179,7 +179,7 @@ class _IyzicoScreenState extends State<IyzicoScreen> {
         ),
       ),
       title: Text(
-        "Pay with Iyzico",
+        "Pay with iyzico",
         style: TextStyle(fontSize: 16, color: MyTheme.accent_color),
       ),
       elevation: 0.0,

@@ -113,6 +113,7 @@ class _StripeScreenState extends State<StripeScreen> {
       );
     } else {
       return SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,

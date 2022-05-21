@@ -421,7 +421,7 @@ class _OrderListState extends State<OrderList> {
       ));
     } else if (_orderList.length > 0) {
       return RefreshIndicator(
-        color: MyTheme.accent_color,
+        color: MyTheme.font_color,
         backgroundColor: Colors.white,
         displacement: 0,
         onRefresh: _onRefresh,
@@ -498,8 +498,8 @@ class _OrderListState extends State<OrderList> {
                   Text(
                     _orderList[index].grand_total,
                     style: TextStyle(
-                        color: MyTheme.accent_color,
-                        fontSize: 14,
+                        color: MyTheme.font_color,
+                        fontSize: 15,
                         fontWeight: FontWeight.w600),
                   )
                 ],
