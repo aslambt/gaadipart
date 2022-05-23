@@ -119,7 +119,7 @@ class _MainDrawerState extends State<MainDrawer> {
                         }));
                       })
                   : Container(),
-              is_logged_in.value == true
+              is_logged_in.value == true || is_logged_in.value == false
                   ? ListTile(
                       visualDensity:
                           VisualDensity(horizontal: -4, vertical: -4),

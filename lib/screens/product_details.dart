@@ -192,7 +192,10 @@ class _ProductDetailsState extends State<ProductDetails> {
     if (is_logged_in.value == false) {
       // ToastComponent.showDialog("You need to log in", context,
       //     gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-      showAlert(context);
+      // showAlert(context);
+      _isInWishList = true;
+      setState(() {});
+      addToWishList();
       return;
     }
 
@@ -301,40 +304,71 @@ class _ProductDetailsState extends State<ProductDetails> {
     if (is_logged_in.value == false) {
       // ToastComponent.showDialog("You are not logged in", context,
       //     gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-      showAlert(context);
-      return;
-    }
+      // showAlert(context);
+      // return;
+      print(widget.id);
+      print(_variant);
+      print(temp_user_id.value);
+      print(_quantity);
 
-    print(widget.id);
-    print(_variant);
-    print(user_id.value);
-    print(_quantity);
+      var addCartResponse = await CartRepository()
+          .getAddCartResponse(
+          widget.id, _variant, temp_user_id.value, _quantity);
 
-    var cartAddResponse = await CartRepository()
-        .getCartAddResponse(widget.id, _variant, user_id.value, _quantity);
-
-    if (cartAddResponse.result == false) {
-      ToastComponent.showDialog(cartAddResponse.message, context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-      return;
-    } else {
-      if (mode == "add_to_cart") {
-        if (snackbar != null && context != null) {
-          Scaffold.of(context).showSnackBar(snackbar);
+      if (addCartResponse.result == false) {
+        ToastComponent.showDialog(addCartResponse.message, context,
+            gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+        return;
+      } else {
+        if (mode == "add_to_cart") {
+          if (snackbar != null && context != null) {
+            Scaffold.of(context).showSnackBar(snackbar);
+          }
+          reset();
+          fetchAll();
         }
-        reset();
-        fetchAll();
-      }
 
-      else if (mode == 'buy_now') {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Cart(has_bottomnav: false);
-        })).then((value) {
-          onPopped(value);
-        });
+        else if (mode == 'buy_now') {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return Cart(has_bottomnav: false);
+          })).then((value) {
+            onPopped(value);
+          });
+        }
+      }
+     }
+    else {
+      print(widget.id);
+      print(_variant);
+      print(user_id.value);
+      print(_quantity);
+
+      var cartAddResponse = await CartRepository()
+          .getCartAddResponse(widget.id, _variant, user_id.value, _quantity);
+
+      if (cartAddResponse.result == false) {
+        ToastComponent.showDialog(cartAddResponse.message, context,
+            gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+        return;
+      } else {
+        if (mode == "add_to_cart") {
+          if (snackbar != null && context != null) {
+            Scaffold.of(context).showSnackBar(snackbar);
+          }
+          reset();
+          fetchAll();
+        }
+
+        else if (mode == 'buy_now') {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return Cart(has_bottomnav: false);
+          })).then((value) {
+            onPopped(value);
+          });
+        }
       }
     }
-   }
+  }
 
   onPopped(value) async {
     reset();
@@ -527,7 +561,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         messenger_name: conversationCreateResponse.shop_name,
         messenger_title: conversationCreateResponse.title,
         messenger_image: conversationCreateResponse.shop_logo,
-      );;
+      );
     })).then((value) {
       onPopped(value);
     });

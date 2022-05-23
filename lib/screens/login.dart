@@ -69,7 +69,7 @@ class _LoginState extends State<Login> {
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
       return;
     }
-    print("ASIFFFF");
+    print("Login pressed");
     var loginResponse = await AuthRepository()
         .getLoginResponse(_login_by == 'email' ? email : _phone, password);
 

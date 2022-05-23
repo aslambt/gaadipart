@@ -35,6 +35,7 @@ class CartResponse {
 class CartItem {
   CartItem({
     this.id,
+    this.temp_user_id,
     this.owner_id,
     this.user_id,
     this.product_id,
@@ -51,6 +52,7 @@ class CartItem {
   });
 
   int id;
+  int temp_user_id;
   int owner_id;
   int user_id;
   int product_id;
@@ -67,6 +69,7 @@ class CartItem {
 
   factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
     id: json["id"] == null ? null : json["id"],
+    temp_user_id: json["temp_user_id"] == null ? null : json["temp_user_id"],
     owner_id: json["owner_id"] == null ? null : json["owner_id"],
     user_id: json["user_id"] == null ? null : json["user_id"],
     product_id: json["product_id"] == null ? null : json["product_id"],
@@ -84,6 +87,7 @@ class CartItem {
 
   Map<String, dynamic> toJson() => {
     "id": id == null ? null : id,
+    "temp_user_id": temp_user_id == null ? null : temp_user_id,
     "owner_id": owner_id == null ? null : owner_id,
     "user_id": user_id == null ? null : user_id,
     "product_id": product_id == null ? null : product_id,
