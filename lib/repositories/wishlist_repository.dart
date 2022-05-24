@@ -13,6 +13,12 @@ class WishListRepository {
     return wishlistResponseFromJson(response.body);
   }
 
+  // Future<TempWishlistResponse> getTempUserWishlist() async {
+  //   final response =
+  //   await http.get("${AppConfig.BASE_URL}/wishlists/${temp_user_id.value}", headers: { "Authorization": "Bearer ${access_token.value}"},);
+  //   return tempWishlistResponseFromJson(response.body);
+  // }
+
   Future<WishlistDeleteResponse> delete({
     @required int wishlist_id = 0,
   }) async {

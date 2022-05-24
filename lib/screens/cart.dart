@@ -41,6 +41,11 @@ class _CartState extends State<Cart> {
     if (is_logged_in.value == true) {
       fetchData();
     }
+    else{
+      if (is_logged_in.value == false) {
+        fetchDatas();
+      }
+    }
   }
 
   @override
@@ -62,6 +67,22 @@ class _CartState extends State<Cart> {
     getSetCartTotal();
     setState(() {});
   }
+
+  fetchDatas() async {
+
+    var cartResponseList =
+    await CartRepository().getCartResponseList(temp_user_id.value);
+
+    if (cartResponseList != null && cartResponseList.length > 0) {
+      _shopList = cartResponseList;
+      _chosenOwnerId = cartResponseList[0].owner_id;
+    }
+    _isInitial = false;
+    getSetCartTotal();
+    setState(() {});
+  }
+
+
 
   getSetCartTotal() {
     _cartTotal = 0.00;
@@ -472,13 +493,70 @@ class _CartState extends State<Cart> {
 
   buildCartSellerList() {
     if (is_logged_in.value == false) {
-      return Container(
-          height: 100,
-          child: Center(
-              child: Text(
-            "Please log in to see the cart items",
-            style: TextStyle(color: MyTheme.font_grey),
-          )));
+      // return Container(
+      //     height: 100,
+      //     child: Center(
+      //         child: Text(
+      //       "Please log in to see the cart items",
+      //       style: TextStyle(color: MyTheme.font_grey),
+      //     )));
+      if (_shopList.length > 0) {
+        return SingleChildScrollView(
+          child: ListView.builder(
+            itemCount: _shopList.length,
+            scrollDirection: Axis.vertical,
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 0.0, top: 16.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: SizedBox(
+                              height: 36,
+                              width: 36,
+                              child: Transform.scale(
+                                scale: .75,
+                                child: Radio(
+                                  value: _shopList[index].owner_id,
+                                  groupValue: _chosenOwnerId,
+                                  activeColor: MyTheme.accent_color,
+                                  onChanged: _handleSellerRadioValueChange,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            _shopList[index].name,
+                            style: TextStyle(color: MyTheme.font_grey),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Text(
+                              partialTotalString(index),
+                              style: TextStyle(
+                                  color: MyTheme.font_color, fontSize: 16),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    buildCartSellerItemList(index),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      }
     } else
     if (_isInitial && _shopList.length == 0) {
       return SingleChildScrollView(
@@ -540,7 +618,8 @@ class _CartState extends State<Cart> {
           },
         ),
       );
-    } else if (!_isInitial && _shopList.length == 0) {
+    }
+    else if (!_isInitial && _shopList.length == 0) {
       return Container(
           height: 100,
           child: Center(

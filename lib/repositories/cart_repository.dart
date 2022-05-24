@@ -74,5 +74,12 @@ class CartRepository{
     return cartSummaryResponseFromJson(response.body);
   }
 
+  // Future<TempCartSummaryResponse> getTempCartSummaryResponse(@required owner_id) async {
+  //   final response = await http.get("${AppConfig.BASE_URL}/cart-summary/${temp_user_id.value}/${owner_id}",
+  //     headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"}, );
+  //
+  //   return tempCartSummaryResponseFromJson(response.body);
+  // }
+
 }
 

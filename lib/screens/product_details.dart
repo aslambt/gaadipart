@@ -179,6 +179,15 @@ class _ProductDetailsState extends State<ProductDetails> {
     setState(() {});
   }
 
+  addToTempWishList() async {
+    var tempWishListCheckResponse =
+    await WishListRepository().add(product_id: widget.id);
+
+    //print("p&u:" + widget.id.toString() + " | " + _user_id.toString());
+    _isInWishList = tempWishListCheckResponse.is_in_wishlist;
+    setState(() {});
+  }
+
   removeFromWishList() async {
     var wishListCheckResponse =
         await WishListRepository().remove(product_id: widget.id);
@@ -192,21 +201,28 @@ class _ProductDetailsState extends State<ProductDetails> {
     if (is_logged_in.value == false) {
       // ToastComponent.showDialog("You need to log in", context,
       //     gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-      // showAlert(context);
-      _isInWishList = true;
-      setState(() {});
-      addToWishList();
-      return;
-    }
-
-    if (_isInWishList) {
-      _isInWishList = false;
-      setState(() {});
-      removeFromWishList();
-    } else {
-      _isInWishList = true;
-      setState(() {});
-      addToWishList();
+      showAlert(context);
+      // if (_isInWishList) {
+      //   _isInWishList = false;
+      //   setState(() {});
+      //   removeFromWishList();
+      // } else {
+      //   _isInWishList = true;
+      //   setState(() {});
+      //   addToTempWishList() ;
+      // }
+    }else{
+      if (is_logged_in.value == true){
+        if (_isInWishList) {
+          _isInWishList = false;
+          setState(() {});
+          removeFromWishList();
+        } else {
+          _isInWishList = true;
+          setState(() {});
+          addToWishList();
+        }
+      }
     }
   }
 

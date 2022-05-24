@@ -35,3 +35,36 @@ class WishListChekResponse {
     "wishlist_id": wishlist_id,
   };
 }
+
+//
+// TempWishListChekResponse tempWishListChekResponseFromJson(String str) => TempWishListChekResponse.fromJson(json.decode(str));
+//
+// String tempWishListChekResponseToJson(TempWishListChekResponse data) => json.encode(data.toJson());
+//
+// class TempWishListChekResponse {
+//   TempWishListChekResponse({
+//     this.message,
+//     this.is_in_wishlist,
+//     this.product_id,
+//     this.wishlist_id,
+//   });
+//
+//   String message;
+//   bool is_in_wishlist;
+//   int product_id;
+//   int wishlist_id;
+//
+//   factory TempWishListChekResponse.fromJson(Map<String, dynamic> json) => TempWishListChekResponse(
+//     message: json["message"],
+//     is_in_wishlist: json["is_in_wishlist"],
+//     product_id: json["product_id"],
+//     wishlist_id: json["wishlist_id"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "message": message,
+//     "is_in_wishlist": is_in_wishlist,
+//     "product_id": product_id,
+//     "wishlist_id": wishlist_id,
+//   };
+// }

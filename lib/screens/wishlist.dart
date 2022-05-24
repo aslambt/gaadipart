@@ -42,6 +42,13 @@ class _WishlistState extends State<Wishlist> {
     setState(() {});
   }
 
+  // fetchTempWishlistItems() async {
+  //   var tempWishlistResponse = await WishListRepository().getTempUserWishlist();
+  //   _wishlistItems.addAll(tempWishlistResponse.wishlist_items);
+  //   _wishlistInit = false;
+  //   setState(() {});
+  // }
+
   reset() {
     _wishlistInit = true;
     _wishlistItems.clear();
@@ -109,14 +116,15 @@ class _WishlistState extends State<Wishlist> {
   }
 
   buildWishlist() {
-    if (is_logged_in.value == false) {
+    if (is_logged_in.value == false ) {
+      // fetchTempWishlistItems();
       return Container(
           height: 100,
           child: Center(
               child: Text(
-            "Please log in to see the wishlist items",
-            style: TextStyle(color: MyTheme.font_grey),
-          )));
+                "Wishlist is Empty",
+                style: TextStyle(color: MyTheme.font_grey),
+              )));
     } else if (_wishlistInit == true && _wishlistItems.length == 0) {
       return SingleChildScrollView(
         child: ShimmerHelper().buildListShimmer(item_count: 10),
