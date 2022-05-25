@@ -21,6 +21,15 @@ class CartRepository{
     return cartResponseFromJson(response.body);
   }
 
+  Future<List<TempCartResponse>> getTempCartResponseList(
+      @required int temp_user_id, ) async {
+
+    final response = await http.post("${AppConfig.BASE_URL}/carts/temp/$temp_user_id",
+      headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"}, );
+
+    return tempCartResponseFromJson(response.body);
+  }
+
   Future<CartDeleteResponse> getCartDeleteResponse(
       @required int cart_id, ) async {
 
@@ -28,6 +37,15 @@ class CartRepository{
       headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"}, );
 
     return cartDeleteResponseFromJson(response.body);
+  }
+
+  Future<TempCartDeleteResponse> getTempCartDeleteResponse(
+      @required int cart_id, ) async {
+
+    final response = await http.delete("${AppConfig.BASE_URL}/carts/temp/$cart_id",
+      headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"}, );
+
+    return tempCartDeleteResponseFromJson(response.body);
   }
 
   Future<CartProcessResponse> getCartProcessResponse(

@@ -36,18 +36,22 @@ class AddCartResponse {
   AddCartResponse({
     this.result,
     this.message,
+    this.temp_user_id,
   });
 
   bool result;
   String message;
+  String temp_user_id;
 
   factory AddCartResponse.fromJson(Map<String, dynamic> json) => AddCartResponse(
     result: json["result"],
     message: json["message"],
+      temp_user_id:json["temp_user_id"],
   );
 
   Map<String, dynamic> toJson() => {
     "result": result,
     "message": message,
+    "temp_user_id":temp_user_id,
   };
 }

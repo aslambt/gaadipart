@@ -27,3 +27,27 @@ class CartDeleteResponse {
     "message": message,
   };
 }
+///////////////////////////////////////////////////////////////////////
+TempCartDeleteResponse tempCartDeleteResponseFromJson(String str) => TempCartDeleteResponse.fromJson(json.decode(str));
+
+String tempCartDeleteResponseToJson(TempCartDeleteResponse data) => json.encode(data.toJson());
+
+class TempCartDeleteResponse {
+  TempCartDeleteResponse({
+    this.result,
+    this.message,
+  });
+
+  bool result;
+  String message;
+
+  factory TempCartDeleteResponse.fromJson(Map<String, dynamic> json) => TempCartDeleteResponse(
+    result: json["result"],
+    message: json["message"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "result": result,
+    "message": message,
+  };
+}

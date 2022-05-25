@@ -10,6 +10,8 @@ import 'package:gaadipart/app_config.dart';
 import 'package:gaadipart/custom/toast_component.dart';
 import 'package:toast/toast.dart';
 
+import 'login.dart';
+
 class Cart extends StatefulWidget {
   Cart({Key key, this.has_bottomnav}) : super(key: key);
   final bool has_bottomnav;
@@ -43,7 +45,7 @@ class _CartState extends State<Cart> {
     }
     else{
       if (is_logged_in.value == false) {
-        fetchDatas();
+        fetchTempData();
       }
     }
   }
@@ -68,14 +70,14 @@ class _CartState extends State<Cart> {
     setState(() {});
   }
 
-  fetchDatas() async {
+  fetchTempData() async {
 
-    var cartResponseList =
-    await CartRepository().getCartResponseList(temp_user_id.value);
+    var tempCartResponseList =
+    await CartRepository().getTempCartResponseList(temp_user_id.value);
 
-    if (cartResponseList != null && cartResponseList.length > 0) {
-      _shopList = cartResponseList;
-      _chosenOwnerId = cartResponseList[0].owner_id;
+    if (tempCartResponseList != null && tempCartResponseList.length > 0) {
+      _shopList = tempCartResponseList;
+      _chosenOwnerId = tempCartResponseList[0].owner_id;
     }
     _isInitial = false;
     getSetCartTotal();
@@ -185,18 +187,36 @@ class _CartState extends State<Cart> {
   }
 
   confirmDelete(cart_id) async {
-    var cartDeleteResponse =
-        await CartRepository().getCartDeleteResponse(cart_id);
+    if (is_logged_in.value == true) {
+      var cartDeleteResponse =
+      await CartRepository().getCartDeleteResponse(cart_id);
 
-    if (cartDeleteResponse.result == true) {
-      ToastComponent.showDialog(cartDeleteResponse.message, context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+      if (cartDeleteResponse.result == true) {
+        ToastComponent.showDialog(cartDeleteResponse.message, context,
+            gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
 
-      reset();
-      fetchData();
-    } else {
-      ToastComponent.showDialog(cartDeleteResponse.message, context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+        reset();
+        fetchData();
+      } else {
+        ToastComponent.showDialog(cartDeleteResponse.message, context,
+            gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+      }
+    }else {
+      if (is_logged_in.value == false) {
+        var tempCartDeleteResponse =
+        await CartRepository().getTempCartDeleteResponse(cart_id);
+
+        if (tempCartDeleteResponse.result == true) {
+          ToastComponent.showDialog(tempCartDeleteResponse.message, context,
+              gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+
+          reset();
+          fetchTempData();
+        } else {
+          ToastComponent.showDialog(tempCartDeleteResponse.message, context,
+              gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+        }
+      }
     }
   }
 
@@ -270,13 +290,23 @@ class _CartState extends State<Cart> {
   }
 
   Future<void> _onRefresh() async {
-    reset();
-    fetchData();
-  }
+    if (is_logged_in.value == false) {
+      reset();
+      fetchTempData();
+    }
+      else{
+        fetchData();
+    }
+    }
 
   onPopped(value) async {
-    reset();
-    fetchData();
+    if (is_logged_in.value == false) {
+      reset();
+      fetchTempData();
+    }
+    else{
+      fetchData();
+    }
   }
 
   @override
@@ -442,7 +472,11 @@ class _CartState extends State<Cart> {
                             fontWeight: FontWeight.w600),
                       ),
                       onPressed: () {
-                        onPressProceedToShipping();
+                        if(is_logged_in.value == false){
+                          showAlert(context);
+                        }else{
+                          onPressProceedToShipping();
+                        }
                       },
                     ),
                   ),
@@ -803,4 +837,51 @@ class _CartState extends State<Cart> {
       ]),
     );
   }
+  showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          elevation: 0,
+          // backgroundColor: Colors.transparent,
+          title: new Text('you are not logged in!'),
+          actions: <Widget>[
+            Row(
+              children: [
+                FlatButton(
+
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(Constants.padding),
+                  ),
+                  child: new Text("Cancel"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                SizedBox(width: 15),
+                FlatButton(
+                  color: Colors.purple,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(Constants.padding),
+                  ),
+                  child: new Text("Login"),
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                          return Login();
+                        }));
+                  },
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class Constants{
+  Constants._();
+  static const double padding =20;
 }
