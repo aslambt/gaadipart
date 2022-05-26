@@ -31,3 +31,31 @@ class SignupResponse {
     "user_id": user_id,
   };
 }
+
+// TempSignupResponse tempSignupResponseFromJson(String str) => TempSignupResponse.fromJson(json.decode(str));
+//
+// String tempSignupResponseToJson(TempSignupResponse data) => json.encode(data.toJson());
+//
+// class TempSignupResponse {
+//   TempSignupResponse({
+//     this.result,
+//     this.message,
+//     this.temp_user_id,
+//   });
+//
+//   bool result;
+//   String message;
+//   int temp_user_id;
+//
+//   factory TempSignupResponse.fromJson(Map<String, dynamic> json) => TempSignupResponse(
+//     result: json["result"],
+//     message: json["message"],
+//     temp_user_id: json["user_id"],
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "result": result,
+//     "message": message,
+//     "user_id": temp_user_id,
+//   };
+// }

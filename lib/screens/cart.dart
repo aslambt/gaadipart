@@ -75,6 +75,7 @@ class _CartState extends State<Cart> {
     var tempCartResponseList =
     await CartRepository().getTempCartResponseList(temp_user_id.value);
 
+
     if (tempCartResponseList != null && tempCartResponseList.length > 0) {
       _shopList = tempCartResponseList;
       _chosenOwnerId = tempCartResponseList[0].owner_id;
@@ -203,6 +204,7 @@ class _CartState extends State<Cart> {
       }
     }else {
       if (is_logged_in.value == false) {
+        // print(temp_user_id.value);
         var tempCartDeleteResponse =
         await CartRepository().getTempCartDeleteResponse(cart_id);
 
@@ -472,10 +474,20 @@ class _CartState extends State<Cart> {
                             fontWeight: FontWeight.w600),
                       ),
                       onPressed: () {
-                        if(is_logged_in.value == false){
-                          showAlert(context);
-                        }else{
-                          onPressProceedToShipping();
+                        if(is_logged_in.value == false && _shopList.length == 0){
+                          return Container(
+                              height: 100,
+                              child: Center(
+                                  child: Text(
+                                    "Cart is empty",
+                                    style: TextStyle(color: MyTheme.font_grey),
+                                  )));
+                        }else {
+                          if (is_logged_in.value == false) {
+                            showAlert(context);
+                          } else if (is_logged_in.value == true) {
+                            onPressProceedToShipping();
+                          }
                         }
                       },
                     ),
@@ -866,6 +878,7 @@ class _CartState extends State<Cart> {
                   ),
                   child: new Text("Login"),
                   onPressed: () {
+                    print(temp_user_id.value);
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
                           return Login();

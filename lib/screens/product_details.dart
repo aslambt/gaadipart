@@ -337,6 +337,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         return;
       } else {
         if (mode == "add_to_cart") {
+          print("Product added to cart successfully");
           if (snackbar != null && context != null) {
             Scaffold.of(context).showSnackBar(snackbar);
           }

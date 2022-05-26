@@ -1,4 +1,5 @@
 import 'package:gaadipart/app_config.dart';
+import 'package:gaadipart/helpers/shared_value_helper.dart';
 import 'package:gaadipart/my_theme.dart';
 import 'package:gaadipart/social_config.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class _LoginState extends State<Login> {
   PhoneNumber phoneCode = PhoneNumber(isoCode: 'IN', dialCode: "+91");
   String _phone = "";
   bool _isObscure = true;
+  // int temp_user_id;
 
   //controllers
   TextEditingController _phoneNumberController = TextEditingController();
@@ -70,6 +72,8 @@ class _LoginState extends State<Login> {
       return;
     }
     print("Login pressed");
+    print(temp_user_id.value);
+
     var loginResponse = await AuthRepository()
         .getLoginResponse(_login_by == 'email' ? email : _phone, password);
 
