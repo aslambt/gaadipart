@@ -346,6 +346,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         }
 
         else if (mode == 'buy_now') {
+          print("Product added to cart successfully");
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return Cart(has_bottomnav: false);
           })).then((value) {

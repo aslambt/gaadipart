@@ -297,6 +297,7 @@ class _CartState extends State<Cart> {
       fetchTempData();
     }
       else{
+      reset();
         fetchData();
     }
     }
@@ -307,6 +308,7 @@ class _CartState extends State<Cart> {
       fetchTempData();
     }
     else{
+      reset();
       fetchData();
     }
   }
@@ -474,21 +476,11 @@ class _CartState extends State<Cart> {
                             fontWeight: FontWeight.w600),
                       ),
                       onPressed: () {
-                        if(is_logged_in.value == false && _shopList.length == 0){
-                          return Container(
-                              height: 100,
-                              child: Center(
-                                  child: Text(
-                                    "Cart is empty",
-                                    style: TextStyle(color: MyTheme.font_grey),
-                                  )));
-                        }else {
-                          if (is_logged_in.value == false) {
+                   if (is_logged_in.value == false) {
                             showAlert(context);
-                          } else if (is_logged_in.value == true) {
+                          } else {
                             onPressProceedToShipping();
                           }
-                        }
                       },
                     ),
                   ),
