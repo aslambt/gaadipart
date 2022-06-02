@@ -8,13 +8,14 @@ import 'package:gaadipart/helpers/shared_value_helper.dart';
 import 'package:gaadipart/helpers/shimmer_helper.dart';
 import 'package:gaadipart/app_config.dart';
 import 'package:gaadipart/custom/toast_component.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
-
 import 'login.dart';
 
 class Cart extends StatefulWidget {
   Cart({Key key, this.has_bottomnav}) : super(key: key);
   final bool has_bottomnav;
+  int id;
 
   @override
   _CartState createState() => _CartState();
@@ -28,24 +29,26 @@ class _CartState extends State<Cart> {
   bool _isInitial = true;
   var _cartTotal = 0.00;
   var _cartTotalString = ". . .";
-
+  var _variant = "";
+  int _quantity = 1;
+  int owner_id;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    /*print("user data");
-    print(is_logged_in.value);
-    print(access_token.value);
-    print(user_id.value);
-    print(user_name.value);*/
+    // print("user data");
+    // print(is_logged_in.value);
+    // print(access_token.value);
+    // print(user_id.value);
+    // print(user_name.value);
 
     if (is_logged_in.value == true) {
       fetchData();
     }
     else{
       if (is_logged_in.value == false) {
-        fetchTempData();
+         fetchTempData();
       }
     }
   }
@@ -62,6 +65,11 @@ class _CartState extends State<Cart> {
         await CartRepository().getCartResponseList(user_id.value);
 
     if (cartResponseList != null && cartResponseList.length > 0) {
+      print(widget.id);
+      print(_variant);
+      print(user_id.value);
+      print(_quantity);
+
       _shopList = cartResponseList;
       _chosenOwnerId = cartResponseList[0].owner_id;
     }
@@ -73,16 +81,21 @@ class _CartState extends State<Cart> {
   fetchTempData() async {
 
     var tempCartResponseList =
-    await CartRepository().getTempCartResponseList(temp_user_id.value);
-
+          await CartRepository().getTempCartResponseList(temp_user_id.value);
 
     if (tempCartResponseList != null && tempCartResponseList.length > 0) {
+      print(widget.id);
+      print(_variant);
+      print(temp_user_id.value);
+      print(_quantity);
+
       _shopList = tempCartResponseList;
       _chosenOwnerId = tempCartResponseList[0].owner_id;
     }
     _isInitial = false;
     getSetCartTotal();
     setState(() {});
+
   }
 
 
@@ -530,15 +543,16 @@ class _CartState extends State<Cart> {
   }
 
   buildCartSellerList() {
-    if (is_logged_in.value == false) {
-      // return Container(
-      //     height: 100,
-      //     child: Center(
-      //         child: Text(
-      //       "Please log in to see the cart items",
-      //       style: TextStyle(color: MyTheme.font_grey),
-      //     )));
-      if (_shopList.length > 0) {
+    if (is_logged_in.value == false && _shopList.length == 0) {
+      return Container(
+          height: 100,
+          child: Center(
+              child: Text(
+            "Cart is empty",
+            style: TextStyle(color: MyTheme.font_grey),
+          )));
+    }else
+      if (is_logged_in.value == false && _shopList.length > 0) {
         return SingleChildScrollView(
           child: ListView.builder(
             itemCount: _shopList.length,
@@ -595,12 +609,13 @@ class _CartState extends State<Cart> {
           ),
         );
       }
-    } else
+     else
     if (_isInitial && _shopList.length == 0) {
       return SingleChildScrollView(
           child: ShimmerHelper()
               .buildListShimmer(item_count: 5, item_height: 100.0));
-    } else if (_shopList.length > 0) {
+    }
+    else if (_shopList.length > 0) {
       return SingleChildScrollView(
         child: ListView.builder(
           itemCount: _shopList.length,

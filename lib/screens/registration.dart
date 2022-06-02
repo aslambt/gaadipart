@@ -19,7 +19,7 @@ class Registration extends StatefulWidget {
 
 class _RegistrationState extends State<Registration> {
   String _register_by = "email"; //phone or email
-  String initialCountry = 'US';
+  String initialCountry = 'IN';
   PhoneNumber phoneCode = PhoneNumber(isoCode: 'IN', dialCode: "91");
 
   String _phone = "";
@@ -49,6 +49,7 @@ class _RegistrationState extends State<Registration> {
   onPressSignUp() async {
     var name = _nameController.text.toString();
     var email = _emailController.text.toString();
+    var phone = _phoneNumberController.text.toString();
     var password = _passwordController.text.toString();
     var password_confirm = _passwordConfirmController.text.toString();
 
@@ -84,6 +85,7 @@ class _RegistrationState extends State<Registration> {
     }
     print("FROM SIGNUP");
     print("${AppConfig.BASE_URL}/auth/signup");
+    // print(_phoneNumberController.value);
 
     var signupResponse = await AuthRepository().getSignupResponse(
         name,
@@ -117,11 +119,6 @@ class _RegistrationState extends State<Registration> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // Container(
-          //   width: _screen_width * (3 / 4),
-          //   child: Image.asset(
-          //       "assets/splash_login_registration_background_image.png"),
-          // ),
           Container(
             width: double.infinity,
             child: SingleChildScrollView(
@@ -287,7 +284,8 @@ class _RegistrationState extends State<Registration> {
                                   },
                                 ),
                               ),
-                              GestureDetector(
+                              AddonConfig.otp_addon_installed
+                             ? GestureDetector(
                                 onTap: () {
                                   setState(() {
                                     _register_by = "email";
@@ -296,10 +294,12 @@ class _RegistrationState extends State<Registration> {
                                 child: Text(
                                   "or, Register with an email",
                                   style: TextStyle(
-                                      color: MyTheme.font_color,
+                                    decoration: TextDecoration.underline,
+                                    color: MyTheme.font_color,
                                     ),
                                 ),
                               )
+                                  : Container()
                             ],
                           ),
                         ),

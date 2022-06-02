@@ -85,6 +85,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   fetchAll() {
     print("product id : ${widget.id}");
     fetchProductDetails();
+    print("product details fetched");
     if (is_logged_in.value == true) {
       fetchWishListCheckInfo();
     }
@@ -106,6 +107,10 @@ class _ProductDetailsState extends State<ProductDetails> {
     setProductDetailValues();
 
     setState(() {});
+    print("=============================================");
+    print(widget.id);
+    print(sellerChatTitleController.text);
+
   }
 
   fetchRelatedProducts() async {
@@ -179,14 +184,14 @@ class _ProductDetailsState extends State<ProductDetails> {
     setState(() {});
   }
 
-  addToTempWishList() async {
-    var tempWishListCheckResponse =
-    await WishListRepository().add(product_id: widget.id);
-
-    //print("p&u:" + widget.id.toString() + " | " + _user_id.toString());
-    _isInWishList = tempWishListCheckResponse.is_in_wishlist;
-    setState(() {});
-  }
+  // addToTempWishList() async {
+  //   var tempWishListCheckResponse =
+  //   await WishListRepository().add(product_id: widget.id);
+  //
+  //   //print("p&u:" + widget.id.toString() + " | " + _user_id.toString());
+  //   _isInWishList = tempWishListCheckResponse.is_in_wishlist;
+  //   setState(() {});
+  // }
 
   removeFromWishList() async {
     var wishListCheckResponse =
@@ -322,14 +327,10 @@ class _ProductDetailsState extends State<ProductDetails> {
       //     gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
       // showAlert(context);
       // return;
-      print(widget.id);
-      print(_variant);
-      print(temp_user_id.value);
-      print(_quantity);
 
       var addCartResponse = await CartRepository()
           .getAddCartResponse(
-          widget.id, _variant, temp_user_id.value, _quantity);
+          widget.id, _variant,temp_user_id.value, _quantity);
 
       if (addCartResponse.result == false) {
         ToastComponent.showDialog(addCartResponse.message, context,
@@ -338,6 +339,10 @@ class _ProductDetailsState extends State<ProductDetails> {
       } else {
         if (mode == "add_to_cart") {
           print("Product added to cart successfully");
+          print(widget.id);
+          print(_variant);
+          print(temp_user_id.value);
+          print(_quantity);
           if (snackbar != null && context != null) {
             Scaffold.of(context).showSnackBar(snackbar);
           }
@@ -356,10 +361,6 @@ class _ProductDetailsState extends State<ProductDetails> {
       }
      }
     else {
-      print(widget.id);
-      print(_variant);
-      print(user_id.value);
-      print(_quantity);
 
       var cartAddResponse = await CartRepository()
           .getCartAddResponse(widget.id, _variant, user_id.value, _quantity);
@@ -370,6 +371,12 @@ class _ProductDetailsState extends State<ProductDetails> {
         return;
       } else {
         if (mode == "add_to_cart") {
+          print("Product added to cart successfully");
+          print(widget.id);
+          print(_variant);
+          print(user_id.value);
+          print(_quantity);
+
           if (snackbar != null && context != null) {
             Scaffold.of(context).showSnackBar(snackbar);
           }

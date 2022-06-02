@@ -72,7 +72,7 @@ class _LoginState extends State<Login> {
       return;
     }
     print("Login pressed");
-    print(temp_user_id.value);
+    // print(temp_user_id.value);
 
     var loginResponse = await AuthRepository()
         .getLoginResponse(_login_by == 'email' ? email : _phone, password);
