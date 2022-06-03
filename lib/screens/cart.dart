@@ -269,14 +269,23 @@ class _CartState extends State<Cart> {
     print(cart_ids_string);
     print(cart_quantities_string);
 
-    var cartProcessResponse = await CartRepository()
-        .getCartProcessResponse(cart_ids_string, cart_quantities_string);
+    // var cartProcessResponse = await CartRepository()
+    //     .getCartProcessResponse(cart_ids_string, cart_quantities_string);
+    //
+    // if (cartProcessResponse.result == false) {
+    //   ToastComponent.showDialog(cartProcessResponse.message, context,
+    //       gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+    // }
+    var tempCartProcessResponse = await CartRepository()
+        .getTempCartProcessResponse(cart_ids_string, cart_quantities_string);
 
-    if (cartProcessResponse.result == false) {
-      ToastComponent.showDialog(cartProcessResponse.message, context,
+    if (tempCartProcessResponse.result == false) {
+      ToastComponent.showDialog(tempCartProcessResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-    } else {
-      ToastComponent.showDialog(cartProcessResponse.message, context,
+    }
+
+    else {
+      ToastComponent.showDialog(tempCartProcessResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
 
       if (mode == "update") {
@@ -293,6 +302,8 @@ class _CartState extends State<Cart> {
       }
     }
   }
+
+
 
   reset() {
     _chosenOwnerId = 0;
@@ -490,7 +501,12 @@ class _CartState extends State<Cart> {
                       ),
                       onPressed: () {
                    if (is_logged_in.value == false) {
-                            showAlert(context);
+                            // showAlert(context);
+                     onPressProceedToShipping();
+                     // Navigator.push(context,
+                     //     MaterialPageRoute(builder: (context) {
+                     //       return Login();
+                     //     }));
                           } else {
                             onPressProceedToShipping();
                           }

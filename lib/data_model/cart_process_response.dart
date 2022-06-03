@@ -27,3 +27,28 @@ class CartProcessResponse {
     "message": message,
   };
 }
+
+
+TempCartProcessResponse tempCartProcessResponseFromJson(String str) => TempCartProcessResponse.fromJson(json.decode(str));
+
+String tempCartProcessResponseToJson(TempCartProcessResponse data) => json.encode(data.toJson());
+
+class TempCartProcessResponse {
+  TempCartProcessResponse({
+    this.result,
+    this.message,
+  });
+
+  bool result;
+  String message;
+
+  factory TempCartProcessResponse.fromJson(Map<String, dynamic> json) => TempCartProcessResponse(
+    result: json["result"],
+    message: json["message"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "result": result,
+    "message": message,
+  };
+}

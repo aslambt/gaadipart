@@ -32,7 +32,9 @@ class _LoginState extends State<Login> {
   PhoneNumber phoneCode = PhoneNumber(isoCode: 'IN', dialCode: "+91");
   String _phone = "";
   bool _isObscure = true;
+  int owner_id;
   // int temp_user_id;
+
 
   //controllers
   TextEditingController _phoneNumberController = TextEditingController();

@@ -805,7 +805,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       0.0,
                     ),
                     child: Text(
-                      "Descripiton:",
+                      "Discripiton:",
                       style: TextStyle(
                           color: MyTheme.font_grey,
                           fontSize: 14,

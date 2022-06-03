@@ -60,6 +60,16 @@ class CartRepository{
     return cartProcessResponseFromJson(response.body);
   }
 
+  Future<TempCartProcessResponse> getTempCartProcessResponse(
+      @required String cart_ids, @required String cart_quantities ) async {
+
+    var post_body = jsonEncode({"cart_ids": "${cart_ids}", "cart_quantities": "$cart_quantities"});
+    final response = await http.post("${AppConfig.BASE_URL}/carts/temp/process",
+        headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"},body: post_body );
+
+    return tempCartProcessResponseFromJson(response.body);
+  }
+
   Future<CartAddResponse> getCartAddResponse(
       @required int id, @required String variant,@required int user_id,@required int quantity ) async {
 
