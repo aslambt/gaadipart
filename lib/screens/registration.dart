@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gaadipart/app_config.dart';
 import 'package:gaadipart/my_theme.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +23,16 @@ class _RegistrationState extends State<Registration> {
   String initialCountry = 'IN';
   PhoneNumber phoneCode = PhoneNumber(isoCode: 'IN', dialCode: "91");
 
-  String _phone = "";
-
+  String _phone = "phone";
+//  final MobileVerificationState  = MobileVerificationState.SHOW_MOBILE_FORM_STATE;
   //controllers
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _phoneNumberController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _passwordConfirmController = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -52,6 +55,24 @@ class _RegistrationState extends State<Registration> {
     var phone = _phoneNumberController.text.toString();
     var password = _passwordController.text.toString();
     var password_confirm = _passwordConfirmController.text.toString();
+
+    await _auth.verifyPhoneNumber(
+      phoneNumber: _phoneNumberController.text,
+      verificationCompleted: (phoneAuthCredential)async{
+
+      },
+      verificationFailed: (verificationFailed) async{
+
+      },
+      codeSent: (verificationId, resendingToken)async{
+        // setState(() {
+        // currentState =
+        // });
+      },
+      codeAutoRetrievalTimeout: (verificationId) async{
+
+      },
+    );
 
     if (name == "") {
       ToastComponent.showDialog("Enter your name", context,
@@ -85,7 +106,7 @@ class _RegistrationState extends State<Registration> {
     }
     print("FROM SIGNUP");
     print("${AppConfig.BASE_URL}/auth/signup");
-    // print(_phoneNumberController.value);
+    print(_phoneNumberController.value);
 
     var signupResponse = await AuthRepository().getSignupResponse(
         name,
@@ -93,6 +114,7 @@ class _RegistrationState extends State<Registration> {
         password,
         password_confirm,
         _register_by);
+    print("User registered by"+_register_by);
 
     if (signupResponse.result == false) {
       ToastComponent.showDialog(signupResponse.message, context,

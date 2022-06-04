@@ -242,6 +242,9 @@ class _CartState extends State<Cart> {
   onPressProceedToShipping() {
     process(mode: "proceed_to_shipping");
   }
+  onPressLogin() {
+    process(mode: "login");
+  }
 
   process({mode}) async {
     var cart_ids = [];
@@ -269,13 +272,31 @@ class _CartState extends State<Cart> {
     print(cart_ids_string);
     print(cart_quantities_string);
 
-    // var cartProcessResponse = await CartRepository()
-    //     .getCartProcessResponse(cart_ids_string, cart_quantities_string);
-    //
-    // if (cartProcessResponse.result == false) {
-    //   ToastComponent.showDialog(cartProcessResponse.message, context,
-    //       gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-    // }
+   if(is_logged_in.value == true){
+     var cartProcessResponse = await CartRepository()
+         .getCartProcessResponse(cart_ids_string, cart_quantities_string);
+
+     if (cartProcessResponse.result == false) {
+       ToastComponent.showDialog(cartProcessResponse.message, context,
+           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+     }  else {
+       ToastComponent.showDialog(cartProcessResponse.message, context,
+           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+
+       if (mode == "update") {
+         reset();
+         fetchData();
+       } else if (mode == "proceed_to_shipping") {
+         Navigator.push(context, MaterialPageRoute(builder: (context) {
+           return ShippingInfo(
+             owner_id: _chosenOwnerId,
+           );
+         })).then((value) {
+           onPopped(value);
+         });
+       }
+     }
+   }
     var tempCartProcessResponse = await CartRepository()
         .getTempCartProcessResponse(cart_ids_string, cart_quantities_string);
 
@@ -283,18 +304,17 @@ class _CartState extends State<Cart> {
       ToastComponent.showDialog(tempCartProcessResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
     }
-
     else {
       ToastComponent.showDialog(tempCartProcessResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
 
       if (mode == "update") {
         reset();
-        fetchData();
-      } else if (mode == "proceed_to_shipping") {
+        fetchTempData();
+      } else if (mode == "login") {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return ShippingInfo(
-            owner_id: _chosenOwnerId,
+          return Login(
+              // owner_id: _chosenOwnerId
           );
         })).then((value) {
           onPopped(value);
@@ -502,11 +522,7 @@ class _CartState extends State<Cart> {
                       onPressed: () {
                    if (is_logged_in.value == false) {
                             // showAlert(context);
-                     onPressProceedToShipping();
-                     // Navigator.push(context,
-                     //     MaterialPageRoute(builder: (context) {
-                     //       return Login();
-                     //     }));
+                     onPressLogin();
                           } else {
                             onPressProceedToShipping();
                           }
