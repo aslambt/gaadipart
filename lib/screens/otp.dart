@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gaadipart/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,11 +8,14 @@ import 'package:gaadipart/repositories/auth_repository.dart';
 import 'package:gaadipart/custom/toast_component.dart';
 import 'package:toast/toast.dart';
 
+import 'main.dart';
+
 
 class Otp extends StatefulWidget {
   Otp({Key key, this.verify_by = "email",this.user_id}) : super(key: key);
   final String verify_by;
   final int user_id;
+  String verificationId;
 
   @override
   _OtpState createState() => _OtpState();
@@ -20,6 +24,35 @@ class Otp extends StatefulWidget {
 class _OtpState extends State<Otp> {
   //controllers
   TextEditingController _verificationCodeController = TextEditingController();
+  // FirebaseAuth _auth = FirebaseAuth.instance;
+  // String verificationId;
+  // bool showLoading = false ;
+  //
+  // void signInWithPhoneAuthCredential(
+  //     PhoneAuthCredential phoneAuthCredential) async {
+  //   setState(() {
+  //     showLoading = true ;
+  //   });
+  //
+  //   try {
+  //     final authCredential = await _auth.signInWithCredential(phoneAuthCredential);
+  //
+  //     setState(() {
+  //       showLoading = false ;
+  //     });
+  //
+  //     if (authCredential?.user != null) {
+  //       Navigator.push(context, MaterialPageRoute(builder: (context)=> Main() ));
+  //     }
+  //   } on FirebaseAuthException catch (e) {
+  //     print('Failed with error code: ${e.code}');
+  //     print(e.message);
+  //     setState(() {
+  //       showLoading = false ;
+  //     });
+  //   }
+  // }
+
 
   @override
   void initState() {
@@ -53,7 +86,14 @@ class _OtpState extends State<Otp> {
 
   onPressConfirm() async {
 
-    var code = _verificationCodeController.text.toString();
+    // PhoneAuthCredential phoneAuthCredential =
+    // PhoneAuthProvider.credential(
+    //     verificationId : verificationId, smsCode : _verificationCodeController.text);
+    //
+    // signInWithPhoneAuthCredential(phoneAuthCredential);
+    //
+     var code = _verificationCodeController.text.toString();
+  // signInWithPhoneAuthCredential(phoneAuthCredential);
 
     if(code == ""){
       ToastComponent.showDialog("Enter verification code", context,
@@ -229,3 +269,4 @@ class _OtpState extends State<Otp> {
     );
   }
 }
+

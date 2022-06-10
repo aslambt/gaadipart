@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gaadipart/my_theme.dart';
 import 'package:gaadipart/screens/cart.dart';
 import 'package:gaadipart/screens/category_list.dart';
@@ -15,6 +16,7 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  final _auth = FirebaseAuth.instance;
   int _currentIndex = 0;
   var _children = [
     Home(),

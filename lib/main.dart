@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +16,13 @@ import 'app_config.dart';
  main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // await FirebaseAuth.instance.verifyPhoneNumber(
+  //   phoneNumber: '+91 9995 913 913',
+  //   verificationCompleted: (phoneAuthCredential) {},
+  //   verificationFailed: (verificationFailed) {},
+  //   codeSent: (verificationId, resendingToken) {},
+  //   codeAutoRetrievalTimeout: (verificationId) {},
+  // );
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -66,8 +74,29 @@ import 'app_config.dart';
   );
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // FirebaseAuth _auth;
+  //
+  // User _user;
+  //
+  // bool isLoading = true;
+  //
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   _auth = FirebaseAuth.instance;
+  //   _user = _auth.currentUser;
+  //   isLoading = false;
+  // }
+  //
+  // final Future<FirebaseApp> initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
 

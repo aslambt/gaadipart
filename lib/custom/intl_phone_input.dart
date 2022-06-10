@@ -103,7 +103,7 @@ class CustomInternationalPhoneNumberInput extends StatefulWidget {
       this.errorMessage = 'Invalid phone number',
       this.selectorButtonOnErrorPadding = 24,
       this.spaceBetweenSelectorAndTextField = 12,
-      this.maxLength = 15,
+      this.maxLength = 11,
       this.isEnabled = true,
       this.formatInput = true,
       this.autoFocus = false,

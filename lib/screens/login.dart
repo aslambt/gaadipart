@@ -59,6 +59,7 @@ class _LoginState extends State<Login> {
   onPressedLogin() async {
     var email = _emailController.text.toString();
     var password = _passwordController.text.toString();
+    // var phone = _phoneNumberController.text.toString();
 
     if (_login_by == 'email' && email == "") {
       ToastComponent.showDialog("Enter email", context,
@@ -74,10 +75,15 @@ class _LoginState extends State<Login> {
       return;
     }
     print("Login pressed");
+    print(_phoneNumberController.value);
+    print(email);
+    print(password);
     // print(temp_user_id.value);
+    print(_login_by);
 
     var loginResponse = await AuthRepository()
         .getLoginResponse(_login_by == 'email' ? email : _phone, password);
+    print(_login_by);
 
     if (loginResponse.result == false) {
       ToastComponent.showDialog(loginResponse.message, context,
