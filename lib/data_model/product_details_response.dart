@@ -51,7 +51,9 @@ class DetailedProduct {
     this.stroked_price,
     this.main_price,
     this.calculable_price,
+    this.unit_price,
     this.currency_symbol,
+    // this.tax,
     this.current_stock,
     this.unit,
     this.rating,
@@ -77,7 +79,9 @@ class DetailedProduct {
   String stroked_price;
   String main_price;
   var calculable_price;
+  var unit_price;
   String currency_symbol;
+  // String tax;
   int current_stock;
   String unit;
   int rating;
@@ -103,7 +107,9 @@ class DetailedProduct {
     stroked_price: json["stroked_price"],
     main_price: json["main_price"],
     calculable_price: json["calculable_price"],
+    unit_price: json["unit_price"],
     currency_symbol: json["currency_symbol"],
+    // tax: json["tax"],
     current_stock: json["current_stock"],
     unit: json["unit"],
     rating: json["rating"].toInt(),
@@ -130,7 +136,9 @@ class DetailedProduct {
     "stroked_price": stroked_price,
     "main_price": main_price,
     "calculable_price": calculable_price,
+    "unit_price": unit_price,
     "currency_symbol": currency_symbol,
+    // "tax": tax,
     "current_stock": current_stock,
     "unit": unit,
     "rating": rating,

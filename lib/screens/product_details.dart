@@ -1,3 +1,4 @@
+import 'package:gaadipart/helpers/temp_helper.dart';
 import 'package:gaadipart/screens/cart.dart';
 import 'package:gaadipart/screens/common_webview_screen.dart';
 import 'package:gaadipart/screens/product_reviews.dart';
@@ -24,9 +25,13 @@ import 'package:gaadipart/helpers/shared_value_helper.dart';
 import 'package:gaadipart/custom/toast_component.dart';
 import 'package:gaadipart/repositories/chat_repository.dart';
 import 'package:gaadipart/screens/chat.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 import 'login.dart';
+
+SharedPreferences prefs;
+const SAVE_TEMP_KEY = 'temp_user_id';
 
 class ProductDetails extends StatefulWidget {
   int id;
@@ -62,6 +67,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   var _singlePriceString;
   int _quantity = 1;
   int _stock = 0;
+  var tax;
 
   List<dynamic> _relatedProducts = [];
   bool _relatedProductInit = false;
@@ -132,8 +138,10 @@ class _ProductDetailsState extends State<ProductDetails> {
   setProductDetailValues() {
     if (_productDetails != null) {
       _appbarPriceString = _productDetails.price_high_low;
-      _singlePrice = _productDetails.calculable_price;
-      _singlePriceString = _productDetails.main_price;
+      _singlePrice = _productDetails.unit_price;
+      _singlePriceString = _productDetails.unit_price;
+      // _singlePrice = _productDetails.calculable_price;
+      // _singlePriceString = _productDetails.calculable_price;
       calculateTotalPrice();
       _stock = _productDetails.current_stock;
       _productDetails.photos.forEach((photo) {
@@ -294,8 +302,33 @@ class _ProductDetailsState extends State<ProductDetails> {
     fetchAll();
   }
 
+  getSharedPreferences () async
+  {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  saveTempValue (int temp_user_id ) async
+  {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('temp_user_id', 0);
+  }
+
+  getTempValue () async
+  {
+    prefs = await SharedPreferences.getInstance();
+    int value = prefs.getInt('temp_user_id') ?? 0;
+    print(value);
+  }
+  saveTemp() async
+  {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('SAVE_TEMP_KEY', temp_user_id.value);
+    print("temp_user_id - " + temp_user_id.value.toString());
+  }
+
   calculateTotalPrice() {
-    _totalPrice = _singlePrice * _quantity;
+        _totalPrice = _productDetails.price_high_low * _quantity;
+
     setState(() {});
   }
 
@@ -339,6 +372,8 @@ class _ProductDetailsState extends State<ProductDetails> {
       } else {
         if (mode == "add_to_cart") {
           print("Product added to cart successfully");
+          saveTemp();
+          TempHelper().setTempUserData(addCartResponse);
           print(widget.id);
           print(_variant);
           print(temp_user_id.value);
@@ -1184,13 +1219,13 @@ class _ProductDetailsState extends State<ProductDetails> {
           child: Container(
             width: 75,
             child: Text(
-              "Total Price:",
+              "Total Price(+GST):",
               style: TextStyle(color: Color.fromRGBO(153, 153, 153, 1)),
             ),
           ),
         ),
         Text(
-          _productDetails.currency_symbol + _totalPrice.toString(),
+          _totalPrice.toString(),
           style: TextStyle(
               color: MyTheme.accent_color,
               fontSize: 18.0,

@@ -3,6 +3,7 @@ import 'package:gaadipart/helpers/shared_value_helper.dart';
 class AuthHelper {
   setUserData(loginResponse) {
     if (loginResponse.result == true) {
+      print(loginResponse.access_token);
       is_logged_in.value = true;
       access_token.value = loginResponse.access_token;
       // temp_user_id.value = loginResponse.temp.user_id;

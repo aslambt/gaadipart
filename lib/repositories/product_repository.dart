@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 class ProductRepository {
   Future<ProductMiniResponse> getFeaturedProducts() async {
     final response = await http.get("${AppConfig.BASE_URL}/products/featured");
+    // print(response.body);
     return productMiniResponseFromJson(response.body);
   }
 
@@ -76,6 +77,7 @@ class ProductRepository {
       {@required int id = 0}) async {
     final response =
         await http.get("${AppConfig.BASE_URL}/products/" + id.toString());
+    print(response.body);
     return productDetailsResponseFromJson(response.body);
   }
 

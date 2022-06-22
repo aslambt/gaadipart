@@ -82,7 +82,7 @@ class _RazorpayScreenState extends State<RazorpayScreen> {
   }
 
   void getData() {
-    print('called.........');
+    print('getting data...........');
     var payment_details = '';
     _webViewController
         .evaluateJavascript("document.body.innerText")

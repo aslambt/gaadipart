@@ -111,25 +111,25 @@ class TempCartResponse {
   TempCartResponse({
     this.name,
     this.owner_id,
-    // this.temp_user_id,
+     this.temp_user_id,
     this.cart_items,
   });
 
   String name;
-  // int temp_user_id;
+  int temp_user_id;
   int owner_id;
   List<TempCartItem> cart_items;
 
   factory TempCartResponse.fromJson(Map<String, dynamic> json) => TempCartResponse(
     name: json["name"] == null ? null : json["name"],
-    // temp_user_id: json["temp_user_id"] == null ? null : json["temp_user_id"],
+    temp_user_id: json["temp_user_id"] == null ? null : json["temp_user_id"],
     owner_id: json["owner_id"] == null ? null : json["owner_id"],
     cart_items: json["cart_items"] == null ? null : List<TempCartItem>.from(json["cart_items"].map((x) => TempCartItem.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "name": name == null ? null : name,
-    // "temp_user_id": temp_user_id == null ? null : temp_user_id,
+    "temp_user_id": temp_user_id == null ? null : temp_user_id,
     "owner_id": owner_id == null ? null : owner_id,
     "cart_items": cart_items == null ? null : List<dynamic>.from(cart_items.map((x) => x.toJson())),
   };

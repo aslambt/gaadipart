@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gaadipart/my_theme.dart';
 import 'package:gaadipart/screens/splash.dart';
 import 'package:gaadipart/screens/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_value/shared_value.dart';
 import 'package:gaadipart/helpers/shared_value_helper.dart';
 import 'dart:async';
@@ -45,6 +46,69 @@ import 'app_config.dart';
     fetch_user();
   });
 
+  // SharedPreferences sharedPreferences;
+  // bool checkValue = false;
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getCredential();
+  // }
+  //
+  // _onChanged(bool value) async {
+  //   sharedPreferences = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     checkValue = value;
+  //     sharedPreferences.setBool("check", checkValue);
+  //     sharedPreferences.setInt("temp_user_id", temp_user_id.value);
+  //     sharedPreferences.commit();
+  //     getCredential();
+  //   });
+  // }
+  // getCredential() async {
+  //   sharedPreferences = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     checkValue = sharedPreferences.getBool("check");
+  //     if (checkValue != null) {
+  //       if (checkValue) {
+  //         temp_user_id.value = sharedPreferences.getInt("temp_user_id");
+  //
+  //       } else {
+  //         sharedPreferences.clear();
+  //       }
+  //     } else {
+  //       checkValue = false;
+  //     }
+  //   });
+  // }
+
+  // SharedPreferences prefs;
+  //
+  // getSharedPreferences () async
+  // {
+  //   prefs = await SharedPreferences.getInstance();
+  // }
+  // prefs = await SharedPreferences.getInstance();
+  // int users = prefs.getInt('temp_user_id') ?? 0;
+  //
+  // saveTempValue () async
+  // {
+  //   prefs = await SharedPreferences.getInstance();
+  //   prefs.setInt('temp_user_id', 1);
+  // }
+  //
+  // retrieveIntValue () async
+  // {
+  //   prefs = await SharedPreferences.getInstance();
+  //   int value = prefs.getInt('temp_user_id');
+  //   print(value);
+  // }
+  // saveTemp() async
+  // {
+  //   prefs = await SharedPreferences.getInstance();
+  //   prefs.setInt('temp_user_id', temp_user_id.value);
+  //   print(temp_user_id.value);
+  // }
 
 
 
@@ -74,13 +138,7 @@ import 'app_config.dart';
   );
 }
 
-class MyApp extends StatefulWidget {
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   // FirebaseAuth _auth;
   //
   // User _user;

@@ -30,6 +30,7 @@ class PaymentRepository {
       "user_id": "${user_id.value}",
       "payment_type": "${payment_method}"
     });
+    print(post_body);
 
     final response = await http.post("${AppConfig.BASE_URL}/order/store",
         headers: {
@@ -38,7 +39,7 @@ class PaymentRepository {
         },
         body: post_body);
 
-    //print(response.body.toString());
+    print(response.body.toString());
     return orderCreateResponseFromJson(response.body);
   }
 
@@ -62,6 +63,7 @@ class PaymentRepository {
       "payment_type": "${payment_method}",
       "amount": "${amount}"
     });
+    print(post_body);
 
     final response =
         await http.post("${AppConfig.BASE_URL}/payments/pay/wallet",
@@ -76,12 +78,14 @@ class PaymentRepository {
   }
 
   Future<OrderCreateResponse> getOrderCreateResponseFromCod(
-      @required int owner_id, @required payment_method) async {
+      @required int owner_id, @required payment_method, @required delivery_token) async {
     var post_body = jsonEncode({
       "owner_id": "${owner_id}",
       "user_id": "${user_id.value}",
-      "payment_type": "${payment_method}"
+      "payment_type": "${payment_method}",
+      "delivery_token":"${delivery_token}"
     });
+    print(post_body);
 
     final response = await http.post("${AppConfig.BASE_URL}/payments/pay/cod",
         headers: {
@@ -90,7 +94,7 @@ class PaymentRepository {
         },
         body: post_body);
 
-    //print(response.body.toString());
+    print(response.body.toString());
     return orderCreateResponseFromJson(response.body);
   }
 
@@ -106,6 +110,7 @@ class PaymentRepository {
       "amount": "${amount}",
       "payment_details": "${payment_details}"
     });
+    print(post_body);
 
     final response = await http.post("${AppConfig.BASE_URL}/razorpay/success",
         headers: {

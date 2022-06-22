@@ -19,7 +19,7 @@ final SharedValue<int> user_id = SharedValue(
 );
 
 final SharedValue<int> temp_user_id = SharedValue(
-  value: 1, // initial value
+  value: 0, // initial value
   key: "temp_user_id", // disk storage key for shared_preferences
   autosave: true, // autosave to shared prefs when value changes
 );
@@ -46,4 +46,10 @@ final SharedValue<String> user_phone = SharedValue(
   value: "", // initial value
   key: "user_phone", // disk storage key for shared_preferences
   autosave: true, // autosave to shared prefs when value changes
+);
+
+final SharedValue<String> delivery_token = SharedValue(
+  value: "A",
+  key: "delivery_token",
+  autosave: true, //autosave to shared prefs when value changes
 );

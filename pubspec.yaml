@@ -26,6 +26,7 @@ dependencies:
   http: ^0.12.2
   firebase_auth:
   firebase_core:
+  lottie:
   cloud_firestore:
   intl:
   provider: ^4.3.2+2

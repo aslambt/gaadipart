@@ -319,6 +319,7 @@ class _CartState extends State<Cart> {
         })).then((value) {
           onPopped(value);
         });
+        // showAlert(context);
       }
     }
   }
@@ -521,7 +522,7 @@ class _CartState extends State<Cart> {
                       ),
                       onPressed: () {
                    if (is_logged_in.value == false) {
-                            // showAlert(context);
+                             // showAlert(context);
                      onPressLogin();
                           } else {
                             onPressProceedToShipping();
@@ -789,7 +790,9 @@ class _CartState extends State<Cart> {
                                             .price *
                                         _shopList[seller_index]
                                             .cart_items[item_index]
-                                            .quantity)
+                                            .quantity +
+                                    _shopList[seller_index]
+                                        .cart_items[item_index].tax)
                                     .toString(),
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.ellipsis,
@@ -822,6 +825,8 @@ class _CartState extends State<Cart> {
                         )
                       ],
                     ),
+                    Text("(Incl GST)",style: TextStyle(
+                        color: Colors.black),),
                   ],
                 ),
               ),

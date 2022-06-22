@@ -12,6 +12,7 @@ import 'package:gaadipart/screens/registration.dart';
 import 'package:gaadipart/screens/main.dart';
 import 'package:gaadipart/screens/password_forget.dart';
 import 'package:gaadipart/custom/toast_component.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:gaadipart/repositories/auth_repository.dart';
 import 'package:gaadipart/helpers/auth_helper.dart';
@@ -54,6 +55,22 @@ class _LoginState extends State<Login> {
     SystemChrome.setEnabledSystemUIOverlays(
         [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     super.dispose();
+  }
+
+  SharedPreferences prefs;
+  getSharedPreferences () async
+  {
+    prefs = await SharedPreferences.getInstance();
+  }
+  // saveStringValue () async
+  // {
+  //   prefs = await SharedPreferences.getInstance();
+  //   prefs.setString("temp_user_id", " ");
+  // }
+  saveIntValue () async
+  {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt("temp_user_id", 0);
   }
 
   onPressedLogin() async {

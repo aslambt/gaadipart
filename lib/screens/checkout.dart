@@ -31,6 +31,7 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
   var _selected_payment_method = "";
   var _selected_payment_method_key = "";
+  var delivery_token = "";
 
   ScrollController _mainScrollController = ScrollController();
   TextEditingController _couponController = TextEditingController();
@@ -341,7 +342,7 @@ class _CheckoutState extends State<Checkout> {
   pay_by_cod() async {
     var orderCreateResponse = await PaymentRepository()
         .getOrderCreateResponseFromCod(
-            widget.owner_id, _selected_payment_method_key);
+            widget.owner_id, _selected_payment_method_key,delivery_token);
 
     if (orderCreateResponse.result == false) {
       ToastComponent.showDialog(orderCreateResponse.message, context,
