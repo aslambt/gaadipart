@@ -31,7 +31,7 @@ import 'package:toast/toast.dart';
 import 'login.dart';
 
 SharedPreferences prefs;
-const SAVE_TEMP_KEY = 'temp_user_id';
+ const SAVE_TEMP_KEY = 'temp_user_id';
 
 class ProductDetails extends StatefulWidget {
   int id;
@@ -307,22 +307,18 @@ class _ProductDetailsState extends State<ProductDetails> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  saveTempValue (int temp_user_id ) async
-  {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setInt('temp_user_id', 0);
-  }
 
   getTempValue () async
   {
     prefs = await SharedPreferences.getInstance();
-    int value = prefs.getInt('temp_user_id') ?? 0;
+    final key = 'SAVE_TEMP_KEY';
+    final value = prefs.get(key) ?? 0;
     print(value);
   }
   saveTemp() async
   {
     prefs = await SharedPreferences.getInstance();
-    prefs.setInt('SAVE_TEMP_KEY', temp_user_id.value);
+    prefs.setString('SAVE_TEMP_KEY', temp_user_id.value);
     print("temp_user_id - " + temp_user_id.value.toString());
   }
 
@@ -372,7 +368,8 @@ class _ProductDetailsState extends State<ProductDetails> {
       } else {
         if (mode == "add_to_cart") {
           print("Product added to cart successfully");
-          saveTemp();
+           saveTemp();
+          print(addCartResponse.temp_user_id);
           TempHelper().setTempUserData(addCartResponse);
           print(widget.id);
           print(_variant);

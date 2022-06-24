@@ -23,7 +23,7 @@ class CartRepository{
   }
 
   Future<List<TempCartResponse>> getTempCartResponseList(
-      @required int temp_user_id, ) async {
+      @required String temp_user_id, ) async {
      print(temp_user_id);
 
     final response = await http.post("${AppConfig.BASE_URL}/carts/temp/$temp_user_id",
@@ -84,7 +84,7 @@ class CartRepository{
     return cartAddResponseFromJson(response.body);
   }
   Future<AddCartResponse> getAddCartResponse(
-      @required int id, @required String variant,@required int temp_user_id,@required int quantity ) async {
+      @required int id, @required String variant,@required String temp_user_id,@required int quantity ) async {
 
     var post_body = jsonEncode({"id": "${id}", "variant": "$variant","temp_user_id": "$temp_user_id","quantity": "$quantity","cost_matrix": AppConfig.purchase_code});
 

@@ -6,7 +6,6 @@ class AuthHelper {
       print(loginResponse.access_token);
       is_logged_in.value = true;
       access_token.value = loginResponse.access_token;
-      // temp_user_id.value = loginResponse.temp.user_id;
       user_id.value = loginResponse.user.id;
       user_name.value = loginResponse.user.name;
       user_email.value = loginResponse.user.email;
@@ -20,7 +19,6 @@ class AuthHelper {
       is_logged_in.value = false;
       access_token.value = "";
       user_id.value = 0;
-      // temp_user_id.value = 1;
       user_name.value = "";
       user_email.value = "";
       user_phone.value = "";

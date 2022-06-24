@@ -116,7 +116,7 @@ class TempCartResponse {
   });
 
   String name;
-  int temp_user_id;
+  String temp_user_id;
   int owner_id;
   List<TempCartItem> cart_items;
 
@@ -154,7 +154,7 @@ class TempCartItem {
   });
 
   int id;
-  int temp_user_id;
+  String temp_user_id;
   int owner_id;
   int product_id;
   String product_name;
