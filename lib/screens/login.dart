@@ -95,7 +95,6 @@ class _LoginState extends State<Login> {
     print(_phoneNumberController.value);
     print(email);
     print(password);
-    // print(temp_user_id.value);
     print(_login_by);
 
     var loginResponse = await AuthRepository()

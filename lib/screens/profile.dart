@@ -141,14 +141,14 @@ class _ProfileState extends State<Profile> {
                     }));
                   },
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
-                      color: Colors.purple),
+                    // decoration: BoxDecoration(
+                    //   borderRadius: BorderRadius.circular(30.0),
+                    //   color: Colors.purple),
                     child: TextButton(
                       // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                       child: Text(
-                          "Please log in to see the profile",
-                          style: TextStyle(color: Colors.white,fontSize: 20),
+                          "Please login to see the profile",
+                          style: TextStyle(color: Colors.black,fontSize: 20),
                         ),
                     ),
                    ),

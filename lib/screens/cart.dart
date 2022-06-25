@@ -84,9 +84,13 @@ class _CartState extends State<Cart> {
           await CartRepository().getTempCartResponseList(temp_user_id.value);
 
     if (tempCartResponseList != null && tempCartResponseList.length > 0) {
+      print("--------");
       print(widget.id);
+      print("--------");
       print(_variant);
+      print("--------");
       print(temp_user_id.value);
+      print("--------");
       print(_quantity);
 
       _shopList = tempCartResponseList;

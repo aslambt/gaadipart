@@ -138,7 +138,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   setProductDetailValues() {
     if (_productDetails != null) {
       _appbarPriceString = _productDetails.price_high_low;
-      _singlePrice = _productDetails.unit_price;
+      _singlePrice = _productDetails.calculable_price;
       _singlePriceString = _productDetails.unit_price;
       // _singlePrice = _productDetails.calculable_price;
       // _singlePriceString = _productDetails.calculable_price;
@@ -323,7 +323,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   calculateTotalPrice() {
-        _totalPrice = _productDetails.price_high_low * _quantity;
+        _totalPrice = _singlePrice * _quantity;
 
     setState(() {});
   }
@@ -1222,7 +1222,8 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
         ),
         Text(
-          _totalPrice.toString(),
+          // _totalPrice.toString(),
+          _productDetails.currency_symbol + _totalPrice.toString(),
           style: TextStyle(
               color: MyTheme.accent_color,
               fontSize: 18.0,

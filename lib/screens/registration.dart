@@ -331,7 +331,7 @@ class _RegistrationState extends State<Registration> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Container(
-                                      height: 40,
+                                      height: 36,
                                       child: CustomInternationalPhoneNumberInput(
                                         onInputChanged: (PhoneNumber number) {
                                           print(number.phoneNumber);
