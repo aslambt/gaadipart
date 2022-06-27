@@ -18,7 +18,7 @@ class CartRepository{
 
     final response = await http.post("${AppConfig.BASE_URL}/carts/$user_id",
         headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"}, );
-
+    print(response.body);
     return cartResponseFromJson(response.body);
   }
 
@@ -28,7 +28,7 @@ class CartRepository{
 
     final response = await http.post("${AppConfig.BASE_URL}/carts/temp/$temp_user_id",
       headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"}, );
-
+    print(response.body);
     return tempCartResponseFromJson(response.body);
   }
 
@@ -37,7 +37,7 @@ class CartRepository{
 
     final response = await http.delete("${AppConfig.BASE_URL}/carts/$cart_id",
       headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"}, );
-
+    print(response.body);
     return cartDeleteResponseFromJson(response.body);
   }
 
@@ -46,7 +46,7 @@ class CartRepository{
 
     final response = await http.delete("${AppConfig.BASE_URL}/carts/temp/$cart_id",
       headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"}, );
-
+    print(response.body);
     return tempCartDeleteResponseFromJson(response.body);
   }
 
@@ -56,7 +56,7 @@ class CartRepository{
     var post_body = jsonEncode({"cart_ids": "${cart_ids}", "cart_quantities": "$cart_quantities"});
     final response = await http.post("${AppConfig.BASE_URL}/carts/process",
       headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"},body: post_body );
-
+    print(response.body);
     return cartProcessResponseFromJson(response.body);
   }
 
@@ -66,7 +66,7 @@ class CartRepository{
     var post_body = jsonEncode({"cart_ids": "${cart_ids}", "cart_quantities": "$cart_quantities"});
     final response = await http.post("${AppConfig.BASE_URL}/carts/temp/process",
         headers: {"Content-Type": "application/json", "Authorization": "Bearer ${access_token.value}"},body: post_body );
-
+    print(response.body);
     return tempCartProcessResponseFromJson(response.body);
   }
 

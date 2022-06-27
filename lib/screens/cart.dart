@@ -84,13 +84,10 @@ class _CartState extends State<Cart> {
           await CartRepository().getTempCartResponseList(temp_user_id.value);
 
     if (tempCartResponseList != null && tempCartResponseList.length > 0) {
-      print("--------");
+
       print(widget.id);
-      print("--------");
       print(_variant);
-      print("--------");
       print(temp_user_id.value);
-      print("--------");
       print(_quantity);
 
       _shopList = tempCartResponseList;
@@ -316,14 +313,14 @@ class _CartState extends State<Cart> {
         reset();
         fetchTempData();
       } else if (mode == "login") {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Login(
-              // owner_id: _chosenOwnerId
-          );
-        })).then((value) {
-          onPopped(value);
-        });
-        // showAlert(context);
+        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //   return Login(
+        //       // owner_id: _chosenOwnerId
+        //   );
+        // })).then((value) {
+        //   onPopped(value);
+        // });
+         showAlert(context);
       }
     }
   }
@@ -829,7 +826,9 @@ class _CartState extends State<Cart> {
                         )
                       ],
                     ),
-                    Text("(Incl GST)",style: TextStyle(
+                    Text("Incl GST(" + _shopList[seller_index]
+                        .cart_items[item_index].tax.toString() +"%)"
+                         ,style: TextStyle(
                         color: Colors.black),),
                   ],
                 ),

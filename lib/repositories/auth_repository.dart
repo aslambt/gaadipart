@@ -24,12 +24,13 @@ import 'package:gaadipart/helpers/shared_value_helper.dart';
 
 class AuthRepository {
   Future<LoginResponse> getLoginResponse(
-      @required String email, @required String password) async {
-    var post_body = jsonEncode({"email": "${email}", "password": "$password","identity_matrix": AppConfig.purchase_code});
+      @required String email, @required String password, @required String temp_user_id) async {
+    var post_body = jsonEncode({"email": "${email}", "password": "$password", "temp_user_id":"$temp_user_id","identity_matrix": AppConfig.purchase_code});
     print(post_body);
 
     final response = await http.post("${AppConfig.BASE_URL}/auth/login",
         headers: {"Content-Type": "application/json"}, body: post_body);
+    print(response.body);
     return loginResponseFromJson(response.body);
   }
 

@@ -96,11 +96,11 @@ class _LoginState extends State<Login> {
     print(email);
     print(password);
     print(_login_by);
-
+    print(temp_user_id.value);
     var loginResponse = await AuthRepository()
-        .getLoginResponse(_login_by == 'email' ? email : _phone, password);
+        .getLoginResponse(_login_by == 'email' ? email : _phone, password,temp_user_id.value);
     print(_login_by);
-
+    print(loginResponse.result);
     if (loginResponse.result == false) {
       ToastComponent.showDialog(loginResponse.message, context,
           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
