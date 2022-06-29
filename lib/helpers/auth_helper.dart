@@ -11,6 +11,7 @@ class AuthHelper {
       user_email.value = loginResponse.user.email;
       user_phone.value = loginResponse.user.phone;
       avatar_original.value = loginResponse.user.avatar_original;
+      temp_user_id.value = "0";
 
     }
   }

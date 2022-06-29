@@ -29,6 +29,7 @@ dependencies:
   lottie:
   cloud_firestore:
   intl:
+  share_plus:
   provider: ^4.3.2+2
   json_annotation: ^3.0.1
   logging: ^0.11.4

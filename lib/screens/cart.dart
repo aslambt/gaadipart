@@ -137,6 +137,7 @@ class _CartState extends State<Cart> {
       _shopList[seller_index].cart_items[item_index].quantity++;
       getSetCartTotal();
       setState(() {});
+      onPressUpdate();
     } else {
       ToastComponent.showDialog(
           "Cannot order more than ${_shopList[seller_index].cart_items[item_index].upper_limit} item(s) of this",
@@ -152,6 +153,7 @@ class _CartState extends State<Cart> {
       _shopList[seller_index].cart_items[item_index].quantity--;
       getSetCartTotal();
       setState(() {});
+      onPressUpdate();
     } else {
       ToastComponent.showDialog(
           "Cannot order less than ${_shopList[seller_index].cart_items[item_index].lower_limit} item(s) of this",
@@ -297,32 +299,33 @@ class _CartState extends State<Cart> {
          });
        }
      }
-   }
-    var tempCartProcessResponse = await CartRepository()
-        .getTempCartProcessResponse(cart_ids_string, cart_quantities_string);
+   }else {
+     var tempCartProcessResponse = await CartRepository()
+         .getTempCartProcessResponse(cart_ids_string, cart_quantities_string);
 
-    if (tempCartProcessResponse.result == false) {
-      ToastComponent.showDialog(tempCartProcessResponse.message, context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-    }
-    else {
-      ToastComponent.showDialog(tempCartProcessResponse.message, context,
-          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+     if (tempCartProcessResponse.result == false) {
+       ToastComponent.showDialog(tempCartProcessResponse.message, context,
+           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+     }
+     else {
+       ToastComponent.showDialog(tempCartProcessResponse.message, context,
+           gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
 
-      if (mode == "update") {
-        reset();
-        fetchTempData();
-      } else if (mode == "login") {
-        // Navigator.push(context, MaterialPageRoute(builder: (context) {
-        //   return Login(
-        //       // owner_id: _chosenOwnerId
-        //   );
-        // })).then((value) {
-        //   onPopped(value);
-        // });
+       if (mode == "update") {
+         reset();
+         fetchTempData();
+       } else if (mode == "login") {
+         // Navigator.push(context, MaterialPageRoute(builder: (context) {
+         //   return Login(
+         //       // owner_id: _chosenOwnerId
+         //   );
+         // })).then((value) {
+         //   onPopped(value);
+         // });
          showAlert(context);
-      }
-    }
+       }
+     }
+   }
   }
 
 
@@ -417,10 +420,10 @@ class _CartState extends State<Cart> {
         child: Column(
           children: [
             Container(
-              height: 40,
-              width: double.infinity,
+              height: 38,
+              width: 350,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(0.0),
                   color: MyTheme.soft_accent_color),
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
@@ -447,92 +450,50 @@ class _CartState extends State<Cart> {
                 ),
               ),
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Container(
-                    width: (MediaQuery.of(context).size.width - 32) * (1 / 3),
-                    height: 38,
-                    decoration: BoxDecoration(
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0,),
+              child: Container(
+                // width: (MediaQuery.of(context).size.width - 32) * (2 / 3),
+                width:350,
+                height: 45,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border:
+                        Border.all(color: MyTheme.textfield_grey, width: 1),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: const Radius.circular(9.0),
+                      bottomLeft: const Radius.circular(9.0),
+                      topRight: const Radius.circular(9.0),
+                      bottomRight: const Radius.circular(9.0),
+                    )),
+                child: FlatButton(
+                  minWidth: MediaQuery.of(context).size.width,
+                  //height: 50,
+                  color: MyTheme.accent_color,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: const BorderRadius.only(
+                    topLeft: const Radius.circular(9.0),
+                    bottomLeft: const Radius.circular(9.0),
+                    topRight: const Radius.circular(9.0),
+                    bottomRight: const Radius.circular(9.0),
+                  )),
+                  child: Text(
+                    "PROCEED TO SHIPPING",
+                    style: TextStyle(
                         color: Colors.white,
-                        border:
-                            Border.all(color: MyTheme.textfield_grey, width: 1),
-                        borderRadius: const BorderRadius.only(
-                          topLeft: const Radius.circular(8.0),
-                          bottomLeft: const Radius.circular(8.0),
-                          topRight: const Radius.circular(0.0),
-                          bottomRight: const Radius.circular(0.0),
-                        )),
-                    child: FlatButton(
-                      minWidth: MediaQuery.of(context).size.width,
-                      //height: 50,
-                      color: MyTheme.light_grey,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: const BorderRadius.only(
-                        topLeft: const Radius.circular(8.0),
-                        bottomLeft: const Radius.circular(8.0),
-                        topRight: const Radius.circular(0.0),
-                        bottomRight: const Radius.circular(0.0),
-                      )),
-                      child: Text(
-                        "UPDATE CART",
-                        style: TextStyle(
-                            color: MyTheme.medium_grey,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      onPressed: () {
-                        onPressUpdate();
-                      },
-                    ),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600),
                   ),
+                  onPressed: () {
+               if (is_logged_in.value == false) {
+                         // showAlert(context);
+                 onPressLogin();
+                      } else {
+                        onPressProceedToShipping();
+                      }
+                  },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Container(
-                    width: (MediaQuery.of(context).size.width - 32) * (2 / 3),
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border:
-                            Border.all(color: MyTheme.textfield_grey, width: 1),
-                        borderRadius: const BorderRadius.only(
-                          topLeft: const Radius.circular(0.0),
-                          bottomLeft: const Radius.circular(0.0),
-                          topRight: const Radius.circular(8.0),
-                          bottomRight: const Radius.circular(8.0),
-                        )),
-                    child: FlatButton(
-                      minWidth: MediaQuery.of(context).size.width,
-                      //height: 50,
-                      color: MyTheme.accent_color,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: const BorderRadius.only(
-                        topLeft: const Radius.circular(0.0),
-                        bottomLeft: const Radius.circular(0.0),
-                        topRight: const Radius.circular(8.0),
-                        bottomRight: const Radius.circular(8.0),
-                      )),
-                      child: Text(
-                        "PROCEED TO SHIPPING",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      onPressed: () {
-                   if (is_logged_in.value == false) {
-                             // showAlert(context);
-                     onPressLogin();
-                          } else {
-                            onPressProceedToShipping();
-                          }
-                      },
-                    ),
-                  ),
-                ),
-              ],
+              ),
             )
           ],
         ),
