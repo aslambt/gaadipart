@@ -455,7 +455,7 @@ class _CartState extends State<Cart> {
               child: Container(
                 // width: (MediaQuery.of(context).size.width - 32) * (2 / 3),
                 width:350,
-                height: 45,
+                height: 40,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border:

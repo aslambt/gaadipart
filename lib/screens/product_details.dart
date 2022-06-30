@@ -25,6 +25,7 @@ import 'package:gaadipart/helpers/shared_value_helper.dart';
 import 'package:gaadipart/custom/toast_component.dart';
 import 'package:gaadipart/repositories/chat_repository.dart';
 import 'package:gaadipart/screens/chat.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
@@ -1630,7 +1631,9 @@ class _ProductDetailsState extends State<ProductDetails> {
           padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
           child: IconButton(
             icon: Icon(Icons.share_outlined, color: MyTheme.dark_grey),
-            onPressed: () {},
+            onPressed: () {
+              _onShareWithEmptyFields(context);
+            },
           ),
         ),
       ],
@@ -2078,6 +2081,10 @@ class _ProductDetailsState extends State<ProductDetails> {
       },
     );
   }
+}
+
+_onShareWithEmptyFields(BuildContext context) async {
+  await Share.share("text");
 }
 
 
